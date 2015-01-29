@@ -1,0 +1,18 @@
+#-----------------------------------------------#
+#   .htaccess qui permet de tout rediriger      #
+#   les url sur le fichier index.php            #
+#                                               #
+#   Auteur : ................. Cavron Jérémy    #
+#   Date de création : ....... 23/01/2015       #
+#   Date de modification : ... 23/01/2015       #
+#-----------------------------------------------#
+
+#--- Activation de la ré-écriture url ---
+RewriteEngine on
+
+#--- Conditions si on n'atteint pas un fichier ou dossier alors on fait la ré-écriture url ---
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+
+#--- Redirection de toutes les url vers le fichier index.php ---
+RewriteRule (.*) index.php/$1 [L]
