@@ -72,7 +72,27 @@ class PdoGsb {
         $rs->execute();
 
         $ligne = $rs->fetch();
+
         return $ligne;
+    }
+    
+    /**
+     * Fonction qui récupère tous les id, nom et prénom des visiteurs (commerciaux)
+     * et les retourne. 
+     * @return liste des visiteur commerciaux.
+     */
+    public function getVisiteur(){
+        $req = "SELECT id, nom, prenom, avatar "
+                ."FROM visiteur "
+                ."WHERE type is null "
+                ."ORDER BY nom ASC";
+        $rs = PdoGsb::$monPdo->query($req);
+        $rs->execute();
+        $tousVis = $rs->fetchAll();
+
+        
+        //json_encode($tousVis);
+        return $tousVis;
     }
 
     /**

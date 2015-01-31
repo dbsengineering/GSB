@@ -9,8 +9,12 @@ switch($action){
 		break;
 	}
 	case 'valideConnexion':{
-		$login = $_REQUEST['login'];
-		$mdp = $_REQUEST['mdp'];
+                if($_SERVER["REQUEST_METHOD"] == "POST"){
+                    $login = $_POST['login'];
+                    $mdp = $_POST['mdp'];
+                }
+		//$login = $_REQUEST['login'];
+		//$mdp = $_REQUEST['mdp'];
 		$visiteur = $pdo->getInfosVisiteur($login,$mdp);
 		if(!is_array( $visiteur)){
 			ajouterErreur("Login ou mot de passe incorrect");
@@ -22,7 +26,16 @@ switch($action){
 			$nom =  $visiteur['nom'];
 			$prenom = $visiteur['prenom'];
 			connecter($id,$nom,$prenom);
-			include("./vues/v_sommaire.php");
+
+                        //Vérification si le visiteur est un comptable ou un administrateur.
+                        //Si c'est un comptable, alors on affiche le sommaire comptable.
+                        //Si c'est un adminitrateur, alors on affiche un sommaire administrateur.
+                        //Sinon on affiche le sommaire normal.
+                        if(!empty($visiteur['type']) && $visiteur['type'] === "comp"){
+                            include("./vues/v_sommaireComptable.php");
+                        }else{
+                            include("./vues/v_sommaire.php");
+                        }
 		}
 		break;
 	}

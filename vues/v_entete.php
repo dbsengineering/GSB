@@ -10,6 +10,28 @@
     <!--[if lt IE 9]>
       <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+    <link href="styles/jqx.base.css" rel="stylesheet"/>
     <link href="styles/styles.php" rel="stylesheet">
+    <link href="styles/jquery-ui.css" rel="stylesheet">
+    
+    <!-- Script JQuery -->
+    <script src="js/jquery-2.1.0.min.js"></script>
+    <script src="js/jquery-ui.js"></script>
+    
+    <!-- Script standard -->
+    <script src="js/scripts.js"></script>
+    
+    <!-- Script Bootstrap -->
+    <script src="js/bootstrap.min.js"></script>
+    
+    
+    <!-- Widget jqx -->
+    <script type="text/javascript" src="js/jqx/jqxcore.js"></script>
+    <script type="text/javascript" src="js/jqx/jqxbuttons.js"></script>
+    <script type="text/javascript" src="js/jqx/jqxscrollbar.js"></script>
+    <script type="text/javascript" src="js/jqx/jqxlistbox.js"></script>
+    <script type="text/javascript" src="js/jqx/jqxcombobox.js"></script>
+    <script type="text/javascript" src="js/jqx/jqxdata.js"></script>
+    
   </head>
   <body>

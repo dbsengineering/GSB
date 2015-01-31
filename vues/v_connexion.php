@@ -34,7 +34,8 @@
           <div id="divIdent" class="ident">
            <h1>Identification</h1>
            <div class="col-md-12 column">
-              <form role="form" method="POST" action="index.php?uc=connexion&action=valideConnexion">
+              <form role="form" method="POST" action="index.php?uc=connexion&action=valideConnexion"><!--  -->
+              
                <div class="form-group">
                   <label >Nom utilisateur</label><input class="form-control" id="login" name="login" type="text" />
                </div>

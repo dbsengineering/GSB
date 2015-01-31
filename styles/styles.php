@@ -50,12 +50,27 @@ html, body, .page-container, #sidebar {
     visibility: hidden;
 }
 #idBtnSaisieF {
-    left: 1000px;
+    right: 503px;
 }
 #idBtnFicheF {
-    left: 1156px;
+    right: 300px;
 }
-#idBtnSaisieF, #idBtnFicheF {
+#idBtnOption {
+    right: 200px;
+}
+#idBtnOptionC {
+    right:403px;
+}
+#idBtnDeconnexion {
+    right:0px;
+}
+.btnSupprimer {
+    border: #FFFFFF solid 1px;
+    background:#1C8DD5;
+    color: <?php echo $coulBla; ?>;
+}
+#idBtnSaisieF, #idBtnFicheF, #idBtnOption,
+#idBtnDeconnexion, #idBtnOptionC {
     position: absolute;
     top:0px;
     height:100%;
@@ -68,7 +83,8 @@ html, body, .page-container, #sidebar {
     z-index:2;
 }
 
-#idBtnSaisieF:hover, #idBtnFicheF:hover {
+#idBtnSaisieF:hover, #idBtnFicheF:hover, #idBtnOption:hover,
+#idBtnDeconnexion:hover, #idBtnOptionC:hover {
     border: #999999 solid 1px;
     background:#444444;
     color: #999999;
@@ -79,6 +95,12 @@ html, body, .page-container, #sidebar {
 }
 #btnMen a:hover {
     background:#999999;
+}
+.contenuCbx {
+    padding: 0px;
+    margin: 0px;
+    height: 95px;
+    float: left;
 }
 
 /* set the fixed height of the footer here */
@@ -96,7 +118,16 @@ html, body, .page-container, #sidebar {
 #footer a{
   color:#cccccc;
 }
+#jqxWidget {
+    margin-left:30px;
+}
+#datepicker {
+    margin-top:-30px;
+    color:#000;
+    font-weight: 700;
+    cursor:pointer;
 
+}
 #footer a:hover {
   color: <?php echo $coulBla; ?>;
   margin-left:-2px;
@@ -126,7 +157,8 @@ img {
   margin-top:400px;
   margin-left:80%;
 }
-.ident, #divFichF {
+
+.ident, #divCadreFichF {
   width: 400px;
   height: 300px;
   text-align: center;
@@ -141,8 +173,27 @@ img {
   -moz-box-shadow: 8px 10px 10px 5px rgba(119, 119, 119, 0.75);
   -webkit-box-shadow: 8px 10px 10px 5px rgba(119, 119, 119, 0.75);
 }
+#divCadreFichComp {
+    width: 80%;
+    height: 600px;
+    text-align: center;
+    background: rgba(126,211,232,0.3);
+    border: 1px solid #203066;
+  
+    border-radius: 30px;
+    -moz-border-radius: 30px;
+    -webkit-border-radius: 30px;
 
+    box-shadow: 8px 10px 10px 5px rgba(119, 119, 119, 0.75);
+    -moz-box-shadow: 8px 10px 10px 5px rgba(119, 119, 119, 0.75);
+    -webkit-box-shadow: 8px 10px 10px 5px rgba(119, 119, 119, 0.75);
+}
 
+#divCadreFichF {
+    position: relative;
+    top:200px;
+    left:100px;
+}
 .btnVal {
   padding:1em 1.5em;
   border: #FFFFFF solid 1px;
@@ -202,9 +253,6 @@ img {
 #lstMois{
     color:#000000;
 }
-#divFichF{
-    margin-top:20px;
-}
 
 #divSign {
   margin-top:20px;
@@ -252,23 +300,11 @@ img {
     .textD {
         margin-left:70%;
     }
-    #idBtnSaisieF {
-        left:800px;
-    }
-    #idBtnFicheF {
-        left: 956px;
-    }
 }
 
 @media screen and (max-width: 1280px) {
     .textD {
         margin-left:10%;
-    }
-    #idBtnSaisieF {
-        left:600px;
-    }
-    #idBtnFicheF {
-        left: 756px;
     }
 }
 
@@ -281,6 +317,24 @@ img {
   .textD {
     margin-left:20%;
   }
+  
+    #idBtnFicheF, #idBtnOption, #idBtnDeconnexion,
+    #idBtnSaisieF {
+        right: 0px;
+        width: 210px;
+    }
+    #idBtnSaisieF {
+        top: 58px;
+    }
+    #idBtnFicheF {
+        top: 115px;
+    }
+    #idBtnOption {
+        top: 172px;
+    }
+    #idBtnDeconnexion {
+        top:250px;
+    }
 }
 
 @media screen and (max-width: 768px) {
@@ -371,10 +425,8 @@ img {
         width:100%;
         visibility: visible;
     }
-    #idBtnSaisieF {
-        visibility: hidden;
-    }
-    #idBtnFicheF {
+    #idBtnSaisieF, #idBtnFicheF, #idBtnOption,
+    #idBtnDeconnexion {
         visibility: hidden;
     }
     #menuGauche {
@@ -394,8 +446,11 @@ img {
         margin-left:0px;
         width: <?php echo $tailCen; ?>;
     }
-
-    .ident , #divFichF {
+    #divCadreFichF {
+        top: 200px;
+        left:0px;
+    }
+    .ident , #divCadreFichF {
         width: <?php echo $tailCen; ?>;
     }
     .dropdown-menu {

@@ -24,7 +24,11 @@ switch($uc){
 	case 'connexion':{
 		include("controleurs/c_connexion.php");break;
 	}
+        case 'validationFrais':{
+                include("controleurs/c_validationFrais.php");break;
+        }
 	case 'gererFrais' :{
+
 		include("controleurs/c_gererFrais.php");break;
 	}
 	case 'etatFrais' :{
