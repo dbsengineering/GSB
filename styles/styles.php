@@ -118,9 +118,7 @@ html, body, .page-container, #sidebar {
 #footer a{
   color:#cccccc;
 }
-#jqxWidget {
-    margin-left:30px;
-}
+
 #datepicker {
     margin-top:-30px;
     color:#000;
@@ -175,7 +173,7 @@ img {
 }
 #divCadreFichComp {
     width: 80%;
-    height: 600px;
+    height: 950px;
     text-align: center;
     background: rgba(126,211,232,0.3);
     border: 1px solid #203066;
@@ -188,12 +186,30 @@ img {
     -moz-box-shadow: 8px 10px 10px 5px rgba(119, 119, 119, 0.75);
     -webkit-box-shadow: 8px 10px 10px 5px rgba(119, 119, 119, 0.75);
 }
+#idTableauVis {
+    margin-top:20px;
+    width: 100%;
+    background: rgba(126,211,232,0.3);
+    
+}
+.clTabVis {
+    
+ }
+.clTabVis, th, td, tr {
 
+    border: 1px solid white;
+}
+
+.clSituation {
+
+    color:#000000;
+}
 #divCadreFichF {
     position: relative;
     top:200px;
     left:100px;
 }
+
 .btnVal {
   padding:1em 1.5em;
   border: #FFFFFF solid 1px;
@@ -252,6 +268,14 @@ img {
 
 #lstMois{
     color:#000000;
+}
+
+.listeVisit {
+    margin-top:20px;
+    margin-left:20px;
+    width: 300px;
+    height: 100px;
+
 }
 
 #divSign {

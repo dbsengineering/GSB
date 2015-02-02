@@ -212,7 +212,7 @@ class PdoGsb {
 		where fichefrais.mois = '$mois' and fichefrais.idvisiteur = '$idVisiteur'";
         $res = PdoGsb::$monPdo->query($req);
         $laLigne = $res->fetch();
-        if ($laLigne['nblignesfrais'] == 0) {
+        if ($laLigne['nblignesfrais'] == 1) {
             $ok = true;
         }
         return $ok;

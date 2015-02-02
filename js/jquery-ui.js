@@ -16648,3 +16648,74 @@ function getMois() {
     laDate = new Array(mois,annee);//Création d'une liste avec le mois et l'année
     return laDate;
 }
+
+/**
+ * Fonction qui change le mois et l'année passés en paramètre ne chiffre et 
+ * en format AAAAmm.
+ * @param mois est la date en format: Janvier (2015). De type chaîne.
+ * @return leMois en format AAAAmm. De type chaîne
+ */
+function getMoisChiffre(mois){
+    //Déclaration des variabmes
+    var leMois;//Est le mois en format MM. De type chaîne.
+    var lAnnee;//Est l'année en format AAAA. De type chaîne.
+    var lonCh;//Longueur de la chaîne
+    
+    //Enlève les parenthèses dans la chaîne mois.
+    //gi -> g: correspondance globale; i: casse (majuscule/minuscule) ignorée
+    var regex = new RegExp("[() ]","gi");
+    mois = mois.replace(regex, ""); //renvoie une copie du String
+    
+    lonCh = mois.length - 4;//Récupère la longueur de la chaîne moins les 4 chiffres de l'année
+    
+    //Extraction de l'année
+    lAnnee = mois.substring(lonCh, mois.length);
+    
+    //Extraction du mois
+    mois = mois.substring(0,lonCh);
+    
+    //conversion du mois alphabet en mois chiffrable.
+    switch (mois) {
+        case "Janvier":
+            leMois = "01";
+            break;
+        case "Février":
+            leMois = "02";
+            break;
+        case "Mars":
+            leMois = "03";
+            break;
+        case "Avril":
+            leMois = "04";
+            break;
+        case "Mai":
+            leMois = "05";
+            break;
+        case "Juin":
+            leMois = "06";
+            break;
+        case "Juillet":
+            leMois = "07";
+            break;
+        case "Août":
+            leMois = "08";
+            break;
+        case "Septembre":
+            leMois = "09";
+            break;
+        case  "Octobre":
+            leMois = "10";
+            break;
+        case "Novembre":
+            leMois = "11";
+            break;
+        case "Décembre":
+            leMois = "12";
+            break;
+    };
+    
+    //concaténation de l'année avec le mois
+    leMois = lAnnee + leMois;
+    
+    return leMois;
+}

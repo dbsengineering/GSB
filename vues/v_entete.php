@@ -15,7 +15,7 @@
     <link href="styles/jquery-ui.css" rel="stylesheet">
     
     <!-- Script JQuery -->
-    <script src="js/jquery-2.1.0.min.js"></script>
+    <script src="js/jquery-2.1.3.min.js"></script>
     <script src="js/jquery-ui.js"></script>
     
     <!-- Script standard -->
@@ -23,7 +23,6 @@
     
     <!-- Script Bootstrap -->
     <script src="js/bootstrap.min.js"></script>
-    
     
     <!-- Widget jqx -->
     <script type="text/javascript" src="js/jqx/jqxcore.js"></script>
