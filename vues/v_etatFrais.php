@@ -4,9 +4,7 @@
     </h3>
     <div class="encadre">
     <p>
-        Etat : <?php echo $libEtat?> depuis le <?php echo $dateModif?> <br> Montant validé : <?php echo $montantValide?>
-              
-                     
+        Etat : <?php echo $libEtat?> depuis le <?php echo $dateModif?> <br> Montant validé : <?php echo $montantValide?>            
     </p>
     <div class="table-responsive">
   	<table class="table">

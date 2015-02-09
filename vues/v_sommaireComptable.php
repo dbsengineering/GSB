@@ -17,7 +17,7 @@
                 </ul>
                 <div id="divVisiteur">Comptable : <?php echo $_SESSION['prenom'] . " " . $_SESSION['nom'] ?></div>
                 <div id="idMenCompta">
-                    <a id="idBtnSaisieF" href="index.php?uc=validationFrais&action=validationFrais"/>Validation des frais</a>
+                    <a id="idBtnSaisieF" href="index.php?uc=validationFrais&action=validationFrais"/>Gestion des frais</a>
                     <a id="idBtnOptionC" href="#">Options</a>
                     <a id="idBtnDeconnexion" href="index.php?uc=connexion&action=deconnexion">Déconnexion</a>
                 </div>

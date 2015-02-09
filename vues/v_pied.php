@@ -15,7 +15,10 @@
                     </div>
                 </div><!-- fin container -->
                 <div id="divSign">
-                    <center>Developpment by Cavron Jérémy</center>
+                    <p>
+                        Copyright &copy; 2015
+                        <a href="http://78.211.236.65/portfolio/">Jérémy Cavron</a>
+                    </p>
                 </div>
             </div><!-- fin bottom -->
 

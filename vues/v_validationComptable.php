@@ -13,16 +13,40 @@
                             <div id='jqxWidget'></div>
                     </div>
                     <div id="idDateMois">
-                        <p> Mois: <input type="text" id="datepicker"></p>
-                        <script type="text/javascript">
-                            //Date en lettres et l'année:
-                            $(function() {
-                                $("#datepicker").datepicker({dateFormat : 'MM (yy)'});
-                            });
-                            document.getElementById("datepicker").value = getMois()[0] + " (" + getMois()[1].toString() + ")";
-                            
-                        </script>
+                        <p><label class="titre">Mois :</label> 
+                            <select id="lstMois" name="lstMois" style="width:200px; color:#000;">
+                                <option selected value="0">Sélectionner une date</option>
+                         
+
+                        </select> <!--<input type="text" id="datepicker"> --></p>
+                        
                     </div>
+                </div>
+                <br>
+                <div id="idEtat">
+                    <table class="pagination-centered">
+                        <tr>
+                            <th><h1><center>Etat de la fiche</center></h1></th>
+                        </tr>
+                        <tr>
+                            <td><div id="idCheck1" class="clCheck">
+                                    <label for="enre">Clôturé</label>
+                                    <input id="case1" name="enre" type="checkbox" disabled = true><br>
+                                </div><br>
+                                <div id="idCheck2" class="clCheck">
+                                    <label for="vali">Valider</label>
+                                    <input id="case2" name="vali" type="checkbox" disabled = true><br>
+                                </div><br>
+                                <div id="idCheck3" class="clCheck">
+                                    <label for="remb">Rembourser</label>
+                                    <input id="case3" name="remb" type="checkbox" disabled = true><br>
+                                </div><br>
+                                <div id="idCheck4" class="clCheck">
+                                    <label for="sais">Saisie en cours</label>
+                                    <input id="case4" name="sais" type="checkbox" disabled = true><br>
+                                </div></td>
+                        </tr>
+                    </table>
                 </div>
                 <br>
                 <h2>Frais au forfait</h2>
@@ -33,72 +57,51 @@
                             <th>Nuitée</th>
                             <th>Etape</th>
                             <th>Km</th>
-                            <th>Situation</th>
                         </tr>
                         <tr>
                             <td><input id="idRepMidi" type="text" class="form-control" value=""/></td>
                             <td><input id="idNuite" type="text" class="form-control" value=""/></td>
                             <td><input id="idKm" type="text" class="form-control" value=""/></td>
                             <td><input id="idEtape" type="text" class="form-control" value=""/></td>
-                            <td><select id="idSelecF" class="clSituation" size="4" name="decision2">
-                                    <option value="E">Enregistré</option>
-                                    <option value="V">Validé</option>
-                                    <option value="R">Remboursé</option>
-                                    <option value="S">Saisie en cours</option>
-                                </select></td>
+                            
                         </tr>
                     </table>
                 </div>
                 <br>
                 <h2>Hors forfait</h2>
                 <div id="idTableauVis">
-                    <table class="table table-condensed">
+                    <table id="idTableHF" class="table table-condensed">
                         <tr>
                             <th>Date</th>
                             <th>Libellé</th>
                             <th>Montant</th>
-                            <th>Situation</th>
+                            <th>Options</th>
                         </tr>
-                        <tr>
-                            <td><input id="idDate" type="text" class="form-control" value=""/></td>
-                            <td><input id="idLibelle" type="text" class="form-control" value=""/></td>
-                            <td><input id="idMontant" type="text" class="form-control" value=""/></td>
-                            <td><select class="clSituation" size="4" name="decision2">
-                                    <option value="E">Enregistré</option>
-                                    <option value="V">Validé</option>
-                                    <option value="R">Remboursé</option>
-                                    <option value="S">Saisie en cours</option>
-                                </select></td>
-                        </tr>
+                        
+                        <!-- code ici -->
                     </table>
                 </div>
                 <br>
-                <h2>Hors Classification</h2>
+                <h2>Résumé</h2>
                 <div id="idTableauVis">
                     <table class="table table-condensed">
                         <tr>
                             <th>Nb Justificatifs</th>
-                            <th>Montant</th>
-                            <th>Situation</th>
+                            <th>Montant total</th>
+
                         </tr>
                         <tr>
-                            <td><input type="text" class="form-control" value=""/></td>
-                            <td><input type="text" class="form-control" value=""/></td>
-                            <td><select class="clSituation" size="4" name="decision2">
-                                    <option value="E">Enregistré</option>
-                                    <option value="V">Validé</option>
-                                    <option value="R">Remboursé</option>
-                                    <option value="S">Saisie en cours</option>
-                                </select></td>
+                            <td><input id="idNbJus" type="text" class="form-control" value=""/></td>
+                            <td><input id="idMontC" type="text" class="form-control" value=""/></td>
+
                         </tr>
                     </table>
                 </div>
                 <br>
                 <div class="piedForm">
                     <p>
-                        <input id="annuler" class="btnVal" type="reset" value="Effacer" size="20" />
-                        <input id="modifier" class="btnVal" type="reset" value="Modifier" size="20" />
-                        <input id="ok" class="btnVal" type="submit" value="Envoyer" size="20" />
+
+                        <input id="ok" class="btnVal" type="submit" value="Envoyer" size="20" disabled="disabled" style="visibility:hidden;"/>
                     </p> 
                 </div>
             </form><!-- fin form -->

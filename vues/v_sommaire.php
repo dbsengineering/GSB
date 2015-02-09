@@ -16,7 +16,7 @@
                     <li id="btnMen" role="presentation" class="divider"></li>
                     <li id="btnMen" role="presentation"><a role="menuitem" tabindex="-1" href="index.php?uc=connexion&action=deconnexion">Déconnexion</a></li>
                 </ul>
-                <div id="divVisiteur">Visiteur : <?php echo $_SESSION['prenom'] . " " . $_SESSION['nom'] ?></div>
+                <div id="divVisiteur">Visiteur : <?php echo $_SESSION['prenom'] ." ". $_SESSION['nom'] ?></div>
                 
                 <a id="idBtnSaisieF" href="index.php?uc=gererFrais&action=saisirFrais"/>Saisie des Frais</a>
                 <a id="idBtnFicheF" href="index.php?uc=etatFrais&action=selectionnerMois"/>Consultation des Frais</a>

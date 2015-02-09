@@ -3,7 +3,7 @@
  * c_importFraisValid.php
 
  * Controleur qui récupère les frais du mois envoyé en paramètre
- * d'un commerciale également eenvoyé en paramètre.
+ * d'un commerciale également envoyé en paramètre.
 
  * @author Cavron Jérémy
  */
@@ -18,24 +18,25 @@ if(isset($_POST['postId']) && isset($_POST['postMois'])){
     
     $idVisiteur = $_POST['postId'];
     $mois = $_POST['postMois'];
-    //$idVisiteur = 'gg31'; //pour le test
-    //$mois = '201501';//pour le test
+
     
+
     $requete = PdoGsb::getPdoGsb();
-    $verifiFicheMois = $requete->estPremierFraisMois($idVisiteur, $mois);
-    
+    $verifiFicheMois = $requete->estPremierFraisMoisPourCmp($idVisiteur, $mois);
+
     //Si le visiteur à une fiche frais sur le mois passé en paramètre
     //Alors on récupère les données et les retourne.
     if($verifiFicheMois){
         $fraisAvalider = $requete->getLesFraisForfait($idVisiteur, $mois);
+        
         $etatFiche = $requete->getLesInfosFicheFrais($idVisiteur, $mois);
         $horsForfait = $requete->getLesFraisHorsForfait($idVisiteur, $mois);
         
+        //var_dump($horsForfait);
         //Si les listes ne sont pas vides alors on merge les 3 listes
         //Et on les envoie.
         if($fraisAvalider && $etatFiche){
             
-
             //Concaténation des 3 listes
             $listeFrais = array_merge_recursive($fraisAvalider, $etatFiche, $horsForfait);
             

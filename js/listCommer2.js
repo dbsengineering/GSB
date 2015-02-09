@@ -71,7 +71,7 @@ $(document).ready(function () {
     });
     //Activation de la sélection dans la liste des mois.
     //permet de récupérer la valeur Année/Mois sélectionnée.
-    changeAnnMoisSelect();
+    getAnnMoisSelect();
 
 });
 
@@ -83,9 +83,8 @@ $(document).ready(function () {
  * @param laDate Données a intégrer dans les lignes.
  * @param libelle
  * @param montant
- * @param desactiveBtn permet de savoir si on doit afficher les boutons de modification ou pas.
  */
-function ajoutLigne(laDate, libelle, montant, desactiveBtn) {
+function ajoutLigne(laDate, libelle, montant) {
     var tableau = document.getElementById("idTableHF");
 
     var ligne = tableau.insertRow(-1);//on a ajouté une ligne
@@ -100,13 +99,17 @@ function ajoutLigne(laDate, libelle, montant, desactiveBtn) {
 
     ligne.innerHTML += "<td><input id='idDate' type='text' class='form-control' value='" + laDate + "'/></td>\n\
                         <td><input id='idLibelle' type='text' class='form-control' value='" + libelle + "'/></td>\n\
-                        <td><input id='idMontant' type='text' class='form-control' value='" + montant + "'/></td>";
-                        if(desactiveBtn){
-                            ligne.innerHTML += "<td><button type='button' style='cursor:pointer; width: 100px; color:#000;' onclick='\n\
-                            if (confirm(&quot;Voulez-vous vraiment reporter cette ligne?&quot;)){ alert(&quot;Reportation&quot;)}'>Reporter</button><br><br>\n\
-                            <button type='button' style='cursor:pointer; width: 100px; color:#000;' onclick='\n\
-                            if (confirm(&quot;Voulez-vous vraiment supprimer cette ligne?&quot;)){ effacer(this.parentNode.rowIndex)}'>Supprimer</button></td>";
-                        }
+                        <td><input id='idMontant' type='text' class='form-control' value='" + montant + "'/></td>\n\
+                        <td><select class='clSituation' size='4' name='decision2'>\n\
+                            <option value='E'>Enregistré</option>\n\
+                            <option value='V'>Validé</option>\n\
+                            <option value='R'>Remboursé</option>\n\
+                            <option value='S'>Saisie en cours</option>\n\
+                        </select></td><td>\n\
+                        <button type='button' style='cursor:pointer; width: 100px; color:#000;' onclick='\n\
+                        if (confirm(&quot;Voulez-vous vraiment reporter cette ligne?&quot;)){ alert(&quot;Reportation&quot;)}'>Reporter</button><br><br>\n\
+                        <button type='button' style='cursor:pointer; width: 100px; color:#000;' onclick='\n\
+                        if (confirm(&quot;Voulez-vous vraiment supprimer cette ligne?&quot;)){ effacer(this.parentNode.rowIndex)}'>Supprimer</button></td>";
 }
 
 
@@ -179,32 +182,27 @@ function listOpts(idVisiteur) {
     });
 }
 /**
- * Procédure qui permet d'afficher les frais d'un visiteur
- * à la date sélectionnée.
+ * Fonction qui permet de retourner la valeur Année/mois
+ * Dès qu'on sélectionne un mois différent dans la liste
+ * de l'interface.
+ * @returns annMois . Est la valeur Année/Mois.
  */
-function changeAnnMoisSelect() {
+function getAnnMoisSelect() {
     $('#lstMois').on('change', function (event) {
-        
-                
         var annMois = $(this).val();
         //Frais forfait
-        var repMidi = $('#idRepMidi');
-        var nuite = $('#idNuite');
-        var etape = $('#idEtape');
-        var km = $('#idKm');
+var repMidi = $('#idRepMidi');
+var nuite = $('#idNuite');
+var etape = $('#idEtape');
+var km = $('#idKm');
 
 
-        //Hors classification
-        var idNbJus = $('#idNbJus');
-        var idMontC = $('#idMontC');
-        
-        var desactiveBtn = false;//Variable qui sert à savoir si on désactive les boutons de modifications.
+//Hors classification
+var idNbJus = $('#idNbJus');
+var idMontC = $('#idMontC');
 
-        var donnees = new Array();
+var donnees = new Array();
         effacer(0);//On efface les données de l'interface
-        decoCheckBox();//On décoche toutes les cases des checkbox
-
-        
         //Récupération des informations "frais" du commercial sélectionné
         $.post('./controleurs/c_importFraisAValid.php', {postId: idVisiteur, postMois: annMois}, function (donn) {
 
@@ -222,34 +220,20 @@ function changeAnnMoisSelect() {
                 nuite.val(donnees[2].quantite);//Renvoi les frais nuités
                 etape.val(donnees[0].quantite);//Renvoi les frais Etape
                 km.val(donnees[1].quantite);//Renvoi les frais km
-                
-                
+
                 //Vérifie l'état des frais et sélectionne le bon état sur l'interface
-                //+ changement de style.
                 switch (donnees.idEtat) {
                     case "CL":
-                        document.getElementById("case1").checked = true;
-                        document.getElementById("idCheck1").style.textDecoration ="none";
-                        document.getElementById("idCheck1").style.color ="#01DF01";
-                        desactiveBtn = true;
+                        $("option[value='E']").attr("selected", "selected");
                         break;
                     case "VA":
-                        document.getElementById("case2").checked = true;
-                        document.getElementById("idCheck2").style.textDecoration ="none";
-                        document.getElementById("idCheck2").style.color ="#01DF01";
+                        $("option[value='V']").attr("selected", "selected");
                         break;
                     case "RB":
-                        document.getElementById("case3").checked = true;
-                        document.getElementById("idCheck3").style.textDecoration ="none";
-                        document.getElementById("idCheck3").style.color ="#0000FF";
-                        
+                        $("option[value='R']").attr("selected", "selected");
                         break;
                     case "CR":
-                        document.getElementById("case4").checked = true;
-                        document.getElementById("idCheck4").style.textDecoration ="none";
-                        document.getElementById("idCheck4").style.color ="#883322";
-                        desactiveBtn = false;
-                      
+                        $("option[value='S']").attr("selected", "selected");
                         break;
                 }
 
@@ -265,7 +249,7 @@ function changeAnnMoisSelect() {
                     //pour rajouter des lignes hors forfait sur l'interface.
                     while (donnees[k]) {
 
-                        ajoutLigne(donnees[k].date, donnees[k].libelle, donnees[k].montant, desactiveBtn);
+                        ajoutLigne(donnees[k].date, donnees[k].libelle, donnees[k].montant);
 
                         k++;
                     }
@@ -294,15 +278,4 @@ function selectVisit() {
         //et implémentation sur l'interface leur d'une sélection
         listOpts(idVisiteur);
     });
-}
-
-/**
- * Procédure qui permet de décocher les checkbox (Etat fiche).
- */
-function decoCheckBox(){
-    for(var i=1;i<=4;i++){
-        document.getElementById("case"+i).checked = false;
-        document.getElementById("idCheck"+i).style.textDecoration ="line-through";
-        document.getElementById("idCheck"+i).style.color ="#BBBBBB";
-    }
 }

@@ -100,7 +100,7 @@ html, body, .page-container, #sidebar {
     padding: 0px;
     margin: 0px;
     height: 95px;
-    float: left;
+    float:left;
 }
 
 /* set the fixed height of the footer here */
@@ -110,11 +110,9 @@ html, body, .page-container, #sidebar {
   border-top-width: 1px;
   margin-top:50px;
 }
-
 #footer > .container {
   padding: 20px;
 }
-
 #footer a{
   color:#cccccc;
 }
@@ -155,6 +153,16 @@ img {
   margin-top:400px;
   margin-left:80%;
 }
+#idEtat, .pagination-centered {
+    margin-top:20px;
+    width: 100%;
+}
+
+.clCheck {
+margin-right: 60px;
+    float: right;
+    font-size:2em;
+}
 
 .ident, #divCadreFichF {
   width: 400px;
@@ -173,7 +181,9 @@ img {
 }
 #divCadreFichComp {
     width: 80%;
-    height: 950px;
+    height: 100%;
+    min-height:1000px;
+    height-max: 2000px;
     text-align: center;
     background: rgba(126,211,232,0.3);
     border: 1px solid #203066;
@@ -190,7 +200,7 @@ img {
     margin-top:20px;
     width: 100%;
     background: rgba(126,211,232,0.3);
-    
+    overflow-x:scroll;
 }
 .clTabVis {
     
@@ -201,7 +211,6 @@ img {
 }
 
 .clSituation {
-
     color:#000000;
 }
 #divCadreFichF {
@@ -272,14 +281,14 @@ img {
 
 .listeVisit {
     margin-top:20px;
-    margin-left:20px;
+    margin-left:35%;
     width: 300px;
     height: 100px;
-
 }
 
 #divSign {
   margin-top:20px;
+  margin-left:40%;
 }
 
 #sidebar {
@@ -317,6 +326,7 @@ img {
 }
 
 
+
 /*------------------------*/
 /*      Responsive        */
 /*------------------------*/
@@ -341,6 +351,9 @@ img {
   .textD {
     margin-left:20%;
   }
+    .listeVisit {
+        margin-left:25%;
+    }
   
     #idBtnFicheF, #idBtnOption, #idBtnDeconnexion,
     #idBtnSaisieF {
@@ -449,6 +462,9 @@ img {
         width:100%;
         visibility: visible;
     }
+    .listeVisit {
+        margin-left:20%;
+    }
     #idBtnSaisieF, #idBtnFicheF, #idBtnOption,
     #idBtnDeconnexion {
         visibility: hidden;
@@ -466,6 +482,9 @@ img {
 }
 
 @media screen and (max-width: 480px) {
+    #divCadreFichComp {
+        width: 100%;
+    }
     .textD {
         margin-left:0px;
         width: <?php echo $tailCen; ?>;
@@ -482,6 +501,14 @@ img {
         margin-left:120px;
         width:100%;
     }
+    .listeVisit {
+        margin-left:50px;
+        width:250px;
+    }
+    #divSign {
+        margin-left:10%;
+    }
+
     
 }
 
