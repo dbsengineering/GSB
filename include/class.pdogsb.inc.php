@@ -143,7 +143,8 @@ class PdoGsb {
      */
     public function getLesFraisForfait($idVisiteur, $mois) {
         $req = "SELECT fraisforfait.id AS idfrais, fraisforfait.libelle AS libelle, 
-		lignefraisforfait.quantite AS quantite FROM lignefraisforfait JOIN fraisforfait 
+                fraisforfait.montant AS montant, lignefraisforfait.quantite AS quantite 
+		FROM lignefraisforfait JOIN fraisforfait 
 		ON (fraisforfait.id = lignefraisforfait.idfraisforfait)
 		WHERE lignefraisforfait.idvisiteur ='$idVisiteur' AND lignefraisforfait.mois='$mois' 
 		ORDER BY lignefraisforfait.idfraisforfait";

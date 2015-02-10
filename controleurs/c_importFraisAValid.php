@@ -19,20 +19,16 @@ if(isset($_POST['postId']) && isset($_POST['postMois'])){
     $idVisiteur = $_POST['postId'];
     $mois = $_POST['postMois'];
 
-    
-
     $requete = PdoGsb::getPdoGsb();
     $verifiFicheMois = $requete->estPremierFraisMoisPourCmp($idVisiteur, $mois);
 
     //Si le visiteur à une fiche frais sur le mois passé en paramètre
     //Alors on récupère les données et les retourne.
     if($verifiFicheMois){
-        $fraisAvalider = $requete->getLesFraisForfait($idVisiteur, $mois);
+        $fraisAvalider = $requete->getLesFraisForfait($idVisiteur, $mois);//récupération des frais forfait
+        $etatFiche = $requete->getLesInfosFicheFrais($idVisiteur, $mois);//Récupération info fiche frais
+        $horsForfait = $requete->getLesFraisHorsForfait($idVisiteur, $mois);//Récupération hors forfait
         
-        $etatFiche = $requete->getLesInfosFicheFrais($idVisiteur, $mois);
-        $horsForfait = $requete->getLesFraisHorsForfait($idVisiteur, $mois);
-        
-        //var_dump($horsForfait);
         //Si les listes ne sont pas vides alors on merge les 3 listes
         //Et on les envoie.
         if($fraisAvalider && $etatFiche){

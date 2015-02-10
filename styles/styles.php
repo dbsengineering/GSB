@@ -227,6 +227,7 @@ margin-right: 60px;
   font-family: 'Open Sans', sans-serif;
   font-weight:700;
   border-radius:7px;
+  cursor: pointer;
 }
 .btnVal:hover {
   color:#1C8DD5;

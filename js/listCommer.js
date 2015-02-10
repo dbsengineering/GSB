@@ -70,8 +70,8 @@ $(document).ready(function () {
 
     });
     //Activation de la sélection dans la liste des mois.
-    //permet de récupérer la valeur Année/Mois sélectionnée.
-    changeAnnMoisSelect();
+    //permet d'afficher les frais d'un visiteur.
+    recupFraisVisit();
 
 });
 
@@ -112,20 +112,20 @@ function ajoutLigne(laDate, libelle, montant, desactiveBtn) {
 
 /**
  * Fonction pour confirmer un message.
- * @param index
- * @param message . est le message
+ * @param {integer} index
+ * @param {string} message . est le message
  * @returns confirm(message). Est la confirmation du message
  */
 function confirmer(index, message) {
     return confirm(message);
-    effacer(index);
+    //effacer(index);
     // confirmer(this.parentNode.rowIndex, 'Voulez-vous vraiment supprimer cette ligne?');
 }
 
 /**
  * Procédure qui efface les données de l'interface sans les 
  * effacer sur la base de données.
- * @param num est le numéro de lignes qu'il y a dans Hors forfait.
+ * @param {integer} num est le numéro de lignes qu'il y a dans Hors forfait.
  */
 function effacer(num) {
     $('#idRepMidi').val("");//Efface les frais repas midi
@@ -148,7 +148,7 @@ function effacer(num) {
 /**
  * Procédure qui récupère les mois et années de saisies d'un visiteur passé en paramètre
  * et implémente le combobox de l'interface comptable.
- * @param  idVisiteur est l'id du visiteur passé en paramètre. de type chaîne.
+ * @param  {string} idVisiteur est l'id du visiteur passé en paramètre. de type chaîne.
  */
 function listOpts(idVisiteur) {
     //Appel le composant c_importMoisVisit.php en lui envoyant l'id du visiteur comme paramètre.
@@ -182,11 +182,16 @@ function listOpts(idVisiteur) {
  * Procédure qui permet d'afficher les frais d'un visiteur
  * à la date sélectionnée.
  */
-function changeAnnMoisSelect() {
+function recupFraisVisit() {
     $('#lstMois').on('change', function (event) {
         
                 
         var annMois = $(this).val();
+        var calculTotal;
+        
+        var info = $('#idEtatFiche');
+        var montantValid = $('#idMontantVal');
+        
         //Frais forfait
         var repMidi = $('#idRepMidi');
         var nuite = $('#idNuite');
@@ -202,6 +207,8 @@ function changeAnnMoisSelect() {
 
         var donnees = new Array();
         effacer(0);//On efface les données de l'interface
+        info.html();
+        montantValid.html();
         decoCheckBox();//On décoche toutes les cases des checkbox
 
         
@@ -219,35 +226,81 @@ function changeAnnMoisSelect() {
 
       
                 repMidi.val(donnees[3].quantite);//Renvoi les frais repas midi
-                nuite.val(donnees[2].quantite);//Renvoi les frais nuités
-                etape.val(donnees[0].quantite);//Renvoi les frais Etape
-                km.val(donnees[1].quantite);//Renvoi les frais km
+                nuite.val(donnees[2].quantite);//Renvoi les frais nuitées
+                etape.val(donnees[1].quantite);//Renvoi les frais Etape
+                km.val(donnees[0].quantite);//Renvoi les frais km
+                
+                
+                
+                calculTotal = (donnees[3].quantite*donnees[3].montant);//Calcul des repas
+                calculTotal += (donnees[2].quantite*donnees[2].montant);//Calcul nuitées + rep
+                calculTotal += (donnees[1].quantite*donnees[1].montant);//calcul etape + les précédents
+                calculTotal += (donnees[0].quantite*donnees[0].montant);//Calcul km + les précédents
                 
                 
                 //Vérifie l'état des frais et sélectionne le bon état sur l'interface
                 //+ changement de style.
                 switch (donnees.idEtat) {
                     case "CL":
+                        //Fiche clôturée: on peut modifier
                         document.getElementById("case1").checked = true;
                         document.getElementById("idCheck1").style.textDecoration ="none";
                         document.getElementById("idCheck1").style.color ="#01DF01";
+                        //document.getElementById("idModif").disabled = true;
+                        //document.getElementById("idValider").disabled = true;
+                        //document.getElementById("idRembour").disabled = false;
+                        document.getElementById("idRembour").style.visibility = "hidden";
+                        document.getElementById("idModif").style.visibility = "visible";
+                        document.getElementById("idValider").style.visibility = "visible";
+                        //Afficher les information liés à la saisie
+                        info.html("Etat : " + "Saisie clôturée depuis le " + dateAnglVersFran(donnees.dateModif));
+                        calculTotal = Math.round(calculTotal*100)/100;//On arrondi à 2 chiffres après la virgule
                         desactiveBtn = true;
                         break;
                     case "VA":
+                        //Fiche validée: bloquage sur modification
                         document.getElementById("case2").checked = true;
                         document.getElementById("idCheck2").style.textDecoration ="none";
                         document.getElementById("idCheck2").style.color ="#01DF01";
+                        //document.getElementById("idRembour").disabled = true;
+                        //document.getElementById("idModif").disabled = false;
+                        //document.getElementById("idValider").disabled = false;
+                        document.getElementById("idRembour").style.visibility = "visible";
+                        document.getElementById("idModif").style.visibility = "hidden";
+                        document.getElementById("idValider").style.visibility = "hidden";
+                        info.html("Etat : " + "Saisie validée et mise en paiement depuis le " + dateAnglVersFran(donnees.dateModif));
+                        
+                        desactiveBtn = false;
                         break;
                     case "RB":
+                        //Fiche validée et remboursée: bloquage sur modification
                         document.getElementById("case3").checked = true;
+                        document.getElementById("case2").checked = true;
                         document.getElementById("idCheck3").style.textDecoration ="none";
+                        document.getElementById("idCheck2").style.textDecoration ="none";
                         document.getElementById("idCheck3").style.color ="#0000FF";
-                        
+                        document.getElementById("idCheck2").style.color ="#01DF01";
+                        //document.getElementById("idRembour").disabled = false;
+                        //document.getElementById("idModif").disabled = false;
+                        //document.getElementById("idValider").disabled = false;
+                        document.getElementById("idModif").style.visibility = "hidden";
+                        document.getElementById("idValider").style.visibility = "hidden";
+                        document.getElementById("idRembour").style.visibility = "hidden";
+                        info.html("Etat : " + "Saisie validée et remboursée depuis le " + dateAnglVersFran(donnees.dateModif));
+                        desactiveBtn = false;
                         break;
                     case "CR":
+                        //Fiche crée, saisie en cours: bloquage sur modification
                         document.getElementById("case4").checked = true;
                         document.getElementById("idCheck4").style.textDecoration ="none";
                         document.getElementById("idCheck4").style.color ="#883322";
+                        //document.getElementById("idModif").disabled = false;
+                        //document.getElementById("idValider").disabled = false;
+                        //document.getElementById("idRembour").disabled = false;
+                        document.getElementById("idModif").style.visibility = "hidden";
+                        document.getElementById("idValider").style.visibility = "hidden";
+                        document.getElementById("idRembour").style.visibility = "hidden";
+                        info.html("Etat : " + "Fiche créée, saisie en cours depuis le " + dateAnglVersFran(donnees.dateModif));
                         desactiveBtn = false;
                       
                         break;
@@ -260,17 +313,21 @@ function changeAnnMoisSelect() {
                     k = 9;
                     //On Vérifie si on a plusieurs frais en "hors forfait".
 
-
                     //Boucle à partir de l'indice 9
                     //pour rajouter des lignes hors forfait sur l'interface.
                     while (donnees[k]) {
 
                         ajoutLigne(donnees[k].date, donnees[k].libelle, donnees[k].montant, desactiveBtn);
 
+                        calculTotal += parseInt(donnees[k].montant);
+
                         k++;
                     }
+                    calculTotal = Math.round(calculTotal*100)/100;//On arrondi à 2 chiffres après la virgule
                 }
-
+                
+                
+                
                 //Hors classification
                 idNbJus.val(donnees.nbJustificatifs);
                 idMontC.val(donnees.montantValide + " €");
@@ -278,7 +335,9 @@ function changeAnnMoisSelect() {
         });
     });
 }
-
+/**
+ * Procédure lors d'une sélection visiteur.
+ */
 function selectVisit() {
     //Récupération de l'item sélectionné. ensuite récupération des informations liées à l'id visiteur
     $('#jqxWidget').bind('select', function (event) {
@@ -304,5 +363,29 @@ function decoCheckBox(){
         document.getElementById("case"+i).checked = false;
         document.getElementById("idCheck"+i).style.textDecoration ="line-through";
         document.getElementById("idCheck"+i).style.color ="#BBBBBB";
+    }
+}
+
+/**
+ * Fonction qui récupère une date en version
+ * anglophone et retourne cette dernière en version
+ * française.
+ * @param {string} uneDate
+ * @returns {string} dateFr
+ */
+function dateAnglVersFran(uneDate){
+   
+    var taille = uneDate.length;//taille de la chaîne date
+    var dateFr = "00/00/0000";
+    //On vérifie si la date est cohérente en : 0000-00-00
+    //Sinon on ne convertie pas et on retourne 00/00/0000
+    if(taille === 10){
+        var jour = uneDate.substring(8, uneDate.length);//on extrait le jour
+        var mois = uneDate.substring(5, 7);//On extrait le mois
+        var annee = uneDate.substring(0, 4);//on extrait l'année
+        dateFr = jour + "/" + mois + "/" + annee;//On conditionne en date française
+        return dateFr;
+    }else{
+        return dateFr;
     }
 }

@@ -9,6 +9,7 @@
                         <div class="arrow">
                         Choisir le visiteur :
                         </div>
+                            <script type="text/javascript" src="js/enregistreDonn.js"></script>
                             <script type="text/javascript" src="js/listCommer.js"></script>
                             <div id='jqxWidget'></div>
                     </div>
@@ -46,6 +47,10 @@
                                     <input id="case4" name="sais" type="checkbox" disabled = true><br>
                                 </div></td>
                         </tr>
+                        <tr>
+                            <td><div id="idEtatFiche"></div>
+                                <div id="idMontantVal"></div></td>
+                        </tr>
                     </table>
                 </div>
                 <br>
@@ -53,7 +58,7 @@
                 <div id="idTableauVis">
                     <table class="table table-condensed">
                         <tr>
-                            <th>Repas midi</th>
+                            <th>Repas</th>
                             <th>Nuitée</th>
                             <th>Etape</th>
                             <th>Km</th>
@@ -86,8 +91,8 @@
                 <div id="idTableauVis">
                     <table class="table table-condensed">
                         <tr>
-                            <th>Nb Justificatifs</th>
-                            <th>Montant total</th>
+                            <th>Nombre de Justificatifs reçus</th>
+                            <th>Montant validé</th>
 
                         </tr>
                         <tr>
@@ -100,8 +105,9 @@
                 <br>
                 <div class="piedForm">
                     <p>
-
-                        <input id="ok" class="btnVal" type="submit" value="Envoyer" size="20" disabled="disabled" style="visibility:hidden;"/>
+                        <input id="idModif" class="btnVal" type="button" value="Modifier" size="20" style="visibility:hidden;"/>
+                        <input id="idValider" class="btnVal" type="button" value="Valider" size="20" style="visibility:hidden;"/>
+                        <input id="idRembour" class="btnVal" type="button" value="Rembourser" size="20" style="visibility:hidden;" onclick="javascript:rembourser();"/>
                     </p> 
                 </div>
             </form><!-- fin form -->
