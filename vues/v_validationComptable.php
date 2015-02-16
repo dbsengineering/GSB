@@ -9,8 +9,9 @@
                         <div class="arrow">
                         Choisir le visiteur :
                         </div>
-                            <script type="text/javascript" src="js/enregistreDonn.js"></script>
                             <script type="text/javascript" src="js/listCommer.js"></script>
+                            <script type="text/javascript" src="js/enregistreDonn.js"></script>
+                            <script type="text/javascript" src="js/horsForfait.js"></script>
                             <div id='jqxWidget'></div>
                     </div>
                     <div id="idDateMois">
@@ -64,7 +65,7 @@
                             <th>Km</th>
                         </tr>
                         <tr>
-                            <td><input id="idRepMidi" type="text" class="form-control" value=""/></td>
+                            <td><input id="idRepas" type="text" class="form-control" value=""/></td>
                             <td><input id="idNuite" type="text" class="form-control" value=""/></td>
                             <td><input id="idKm" type="text" class="form-control" value=""/></td>
                             <td><input id="idEtape" type="text" class="form-control" value=""/></td>
@@ -96,8 +97,8 @@
 
                         </tr>
                         <tr>
-                            <td><input id="idNbJus" type="text" class="form-control" value=""/></td>
-                            <td><input id="idMontC" type="text" class="form-control" value=""/></td>
+                            <td><input id="idNbJus" type="text" class="form-control" value="" /></td>
+                            <td><input id="idMontC" type="text" class="form-control" value="" disabled/></td>
 
                         </tr>
                     </table>
@@ -105,9 +106,12 @@
                 <br>
                 <div class="piedForm">
                     <p>
-                        <input id="idModif" class="btnVal" type="button" value="Modifier" size="20" style="visibility:hidden;"/>
-                        <input id="idValider" class="btnVal" type="button" value="Valider" size="20" style="visibility:hidden;"/>
-                        <input id="idRembour" class="btnVal" type="button" value="Rembourser" size="20" style="visibility:hidden;" onclick="javascript:rembourser();"/>
+                        <input id="idModif" class="btnVal" type="button" value="Modifier" size="20" style="visibility:hidden;" 
+                               onclick="javascript:if (confirm(&quot;Voulez-vous vraiment modifier la fiche?&quot;)){ modifier();}"/>
+                        <input id="idValider" class="btnVal" type="button" value="Valider" size="20" style="visibility:hidden;" 
+                               onclick="javascript:if (confirm(&quot;Voulez-vous vraiment valider la fiche?&quot;)){ valider();}"/>
+                        <input id="idRembour" class="btnVal" type="button" value="Rembourser" size="20" style="visibility:hidden;" 
+                               onclick="javascript:if (confirm(&quot;Voulez-vous vraiment valider le remboursement?&quot;)){ rembourser();}"/>
                     </p> 
                 </div>
             </form><!-- fin form -->

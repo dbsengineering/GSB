@@ -1,0 +1,71 @@
+/**
+ * horsForfait.js
+ *
+ * Boite à outils qui permet de reporter ou de
+ * supprimer une ligne hors Forfait
+ *
+ * @copyright   2014-2015 CAVRON Jérémy
+ * @package     JS
+ * @author      Cavron Jérémy
+ * @version     v 1.0
+ */
+
+/**
+ * Procédure qui permet de reporter des frais Hors forfait
+ * sur le mois suivant.
+ * 
+ * @param {string} idBtn
+ * @param {integer} numIndex : est l'index de la lige du tableau hors forfait.
+ */
+function reportFraisHF(idBtn, numIndex){
+    
+    //On enlève de l'interface, la ligne à reporter
+    effLigneInter(numIndex);
+    //On réupère seulement le vrai id de la ligne
+    //En enlevant le texte devant.
+    idBtn = idBtn.substring(11,idBtn.length);
+    //Envoi des données pour reporter la ligne du frais Hors Forfait
+   $.ajax({
+        type: "POST",
+        url: "./controleurs/c_reportSupp.php",
+        data: "postId=" + idBtn + "&postIdVis=" + getIdVisiteur() + "&postNumFunc=0",
+         success: function(msg){
+                     alert( "Report du frais effectué. " + msg );//Message de confirmation ou d'erreur
+                  }
+    });
+}
+
+/**
+ * Procédure qui permet de supprimer un frais Hors forfait
+ * 
+ * @param {string} idBtn
+ * @param {integer} numIndex : est le l'index de la lige du tableau hors forfait
+ */
+function suppFraisHF(idBtn, numIndex){
+    
+    //On enlève de l'interface, la ligne à supprimer
+    effLigneInter(numIndex);
+    //On réupère seulement le vrai id de la ligne
+    //En enlevant le texte devant.
+    idBtn = idBtn.substring(9,idBtn.length);
+    
+    //Envoi des données pour reporter la ligne du frais Hors Forfait
+    $.ajax({
+        type: "POST",
+        url: "./controleurs/c_reportSupp.php",
+        data: "postId=" + idBtn + "&postNumFunc=1",
+         success: function(msg){
+                     alert( "Suppression du frais effectuée. " + msg );//Message de confirmation ou d'erreur
+                  }
+    });
+}
+/**
+ * Procédure qui supprime la ligne frais hors forfait
+ * de l'interface dont l'index est passé en paramètre
+ * 
+ * @param {type} numIndex
+ */
+function effLigneInter(numIndex){
+    //Suppresion de la ligne qui a l'index numIndex
+    document.getElementById("idTableHF").deleteRow(numIndex);
+}

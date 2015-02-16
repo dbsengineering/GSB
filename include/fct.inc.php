@@ -1,25 +1,33 @@
-﻿<?php
+<?php
+/**
+* fct.inc.php
+*/
+
 /** 
  * Fonctions pour l'application GSB
- 
- * @package default
- * @author Cheri Bibi
- * @version    1.0
+ *
+ * @copyright 2014-2015 CAVRON Jérémy
+ * @package Include
+ * @author Cavron Jérémy
+ * @version v 1.0
  */
 
  /**
- * Teste si un quelconque visiteur est connecté
- * @return vrai ou faux 
+ * Fonction qui teste si un quelconque visiteur est connecté.
+ * 
+ * @package include 
+ * @return bool isset($_SESSION['idVisiteur']) : vrai ou faux.
  */
 function estConnecte(){
   return isset($_SESSION['idVisiteur']);
 }
 /**
- * Enregistre dans une variable session les infos d'un visiteur
- 
- * @param $id 
- * @param $nom
- * @param $prenom
+ * Procédure qui enregistre dans une variable session les infos d'un visiteur.
+ *
+ * @package include 
+ * @param string $id : est l'id du visiteur. 
+ * @param string $nom : est le nom du visiteur.
+ * @param string $prenom : est le prénom du visiteur.
  */
 function connecter($id,$nom,$prenom){
 	$_SESSION['idVisiteur']= $id; 
@@ -27,26 +35,32 @@ function connecter($id,$nom,$prenom){
 	$_SESSION['prenom']= $prenom;
 }
 /**
- * Détruit la session active
+ * Procédure qui détruit la session active.
+ * 
+ * @package include 
  */
 function deconnecter(){
 	session_destroy();
 }
 /**
- * Transforme une date au format français jj/mm/aaaa vers le format anglais aaaa-mm-jj
- 
- * @param $madate au format  jj/mm/aaaa
- * @return la date au format anglais aaaa-mm-jj
+ * Fonction qui transforme une date au format français jj/mm/aaaa 
+ * et retourne le format anglais aaaa-mm-jj
+ *
+ * @package include 
+ * @param string $maDate : est la date au format  jj/mm/aaaa.
+ * @return string : la date au format anglais aaaa-mm-jj.
 */
 function dateFrancaisVersAnglais($maDate){
 	@list($jour,$mois,$annee) = explode('/',$maDate);
 	return date('Y-m-d',mktime(0,0,0,$mois,$jour,$annee));
 }
 /**
- * Transforme une date au format format anglais aaaa-mm-jj vers le format français jj/mm/aaaa 
- 
- * @param $maDate au format  aaaa-mm-jj
- * @return la date au format format français jj/mm/aaaa
+ * Fonction qui transforme une date au format format anglais aaaa-mm-jj
+ * et retourne le format français jj/mm/aaaa 
+ *
+ * @package include 
+ * @param string $maDate : est la date au format  aaaa-mm-jj.
+ * @return string : est la date au format format français jj/mm/aaaa.
 */
 function dateAnglaisVersFrancais($maDate){
    @list($annee,$mois,$jour)=explode('-',$maDate);
@@ -54,10 +68,11 @@ function dateAnglaisVersFrancais($maDate){
    return $date;
 }
 /**
- * retourne le mois au format aaaamm selon le jour dans le mois
- 
- * @param $date au format  jj/mm/aaaa
- * @return le mois au format aaaamm
+ * Fonction qui retourne le mois au format aaaamm selon le jour dans le mois.
+ *
+ * @package include 
+ * @param string $date : est la date au format  jj/mm/aaaa.
+ * @return string $annee.$mois : est le mois au format aaaamm
 */
 function getMois($date){
 		@list($jour,$mois,$annee) = explode('/',$date);
@@ -67,12 +82,14 @@ function getMois($date){
 		return $annee.$mois;
 }
 
-/* gestion des erreurs*/
+/* Gestion des erreurs*/
 /**
- * Indique si une valeur est un entier positif ou nul
- 
+ * Fonction qui indique si une valeur est un entier positif ou nul
+ * et retourne vrai ou faux.
+ *
+ * @package include 
  * @param $valeur
- * @return vrai ou faux
+ * @return bool : est un booléen vrai ou faux
 */
 function estEntierPositif($valeur) {
 	return preg_match("/[^0-9]/", $valeur) == 0;
@@ -81,9 +98,10 @@ function estEntierPositif($valeur) {
 
 /**
  * Indique si un tableau de valeurs est constitué d'entiers positifs ou nuls
- 
- * @param $tabEntiers : le tableau
- * @return vrai ou faux
+ *
+ * @package include 
+ * @param array $tabEntiers : est le tableau.
+ * @return bool $ok : est un booléen vrai ou faux.
 */
 function estTableauEntiers($tabEntiers) {
 	$ok = true;
@@ -95,10 +113,12 @@ function estTableauEntiers($tabEntiers) {
 	return $ok;
 }
 /**
- * Vérifie si une date est inférieure d'un an à la date actuelle
- 
- * @param $dateTestee 
- * @return vrai ou faux
+ * Fonction qui vérifie si une date est inférieure d'un an à la date actuelle
+ * et retourne vrai ou faux.
+ *
+ * @package include 
+ * @param string $dateTestee : est une date. 
+ * @return bool ($anneeTeste.$moisTeste.$jourTeste < $AnPasse) : retourne un booléen vrai ou faux.
 */
 function estDateDepassee($dateTestee){
 	$dateActuelle=date("d/m/Y");
@@ -109,10 +129,12 @@ function estDateDepassee($dateTestee){
 	return ($anneeTeste.$moisTeste.$jourTeste < $AnPasse); 
 }
 /**
- * Vérifie la validité du format d'une date française jj/mm/aaaa 
- 
- * @param $date 
- * @return vrai ou faux
+ * Fonction qui vérifie la validité du format d'une date française jj/mm/aaaa
+ * et retourne vrai ou faux. 
+ *
+ * @package include
+ * @param string $date : est la date. 
+ * @return bool $dateOK : est un booléen vrai ou faux
 */
 function estDateValide($date){
 	$tabDate = explode('/',$date);
@@ -135,21 +157,23 @@ function estDateValide($date){
 
 /**
  * Vérifie que le tableau de frais ne contient que des valeurs numériques 
- 
- * @param $lesFrais 
- * @return vrai ou faux
+ *
+ * @package include
+ * @param array $lesFrais : est un tableau de frais.
+ * @return bool : est un booléen vrai ou faux
 */
 function lesQteFraisValides($lesFrais){
 	return estTableauEntiers($lesFrais);
 }
 /**
- * Vérifie la validité des trois arguments : la date, le libellé du frais et le montant 
- 
- * des message d'erreurs sont ajoutés au tableau des erreurs
- 
- * @param $dateFrais 
- * @param $libelle 
- * @param $montant
+ * Procédure qui vérifie la validité des trois arguments : la date, 
+ * le libellé du frais et le montant.
+ * Des message d'erreurs sont ajoutés au tableau des erreurs
+ *
+ * @package include
+ * @param string $dateFrais : est la date du frais.
+ * @param string $libelle : est le libellé du frais.
+ * @param real $montant : est le montant du frais.
  */
 function valideInfosFrais($dateFrais,$libelle,$montant){
 	if($dateFrais==""){
@@ -177,9 +201,10 @@ function valideInfosFrais($dateFrais,$libelle,$montant){
 		}
 }
 /**
- * Ajoute le libellé d'une erreur au tableau des erreurs 
- 
- * @param $msg : le libellé de l'erreur 
+ * Procédure qui ajoute le libellé d'une erreur au tableau des erreurs.
+ *
+ * @package include
+ * @param string $msg : est le libellé de l'erreur.
  */
 function ajouterErreur($msg){
    if (! isset($_REQUEST['erreurs'])){
@@ -188,9 +213,10 @@ function ajouterErreur($msg){
    $_REQUEST['erreurs'][]=$msg;
 }
 /**
- * Retoune le nombre de lignes du tableau des erreurs 
- 
- * @return le nombre d'erreurs
+ * Fonction qui retoune le nombre de lignes du tableau des erreurs.
+ *
+ * @package include
+ * @return int count($_REQUEST['erreurs']) : est le nombre d'erreurs.
  */
 function nbErreurs(){
    if (!isset($_REQUEST['erreurs'])){

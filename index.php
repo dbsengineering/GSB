@@ -1,12 +1,16 @@
 <?php
+/**
+* index.php
+*/
+
 /** 
- * index.php est le fichier d'entré dans le site.
-
- * Description longue des fonctionnalités du fichier  si nécessaire
- * @author Cavron Jérémy
+ * La page index est le fichier d'entré dans le site.
+ *
+ * @copyright 2014-2015 CAVRON Jérémy
  * @package default
+ * @author Cavron Jérémy
+ * @version v 1.0
  */
-
 session_start();
 require_once("include/fct.inc.php");
 require_once("include/class.pdogsb.inc.php");

@@ -1,4 +1,16 @@
 <?php
+/**
+* styles.php
+*/
+
+/** 
+ * Styles CSS est le calque de styles principal de l'application GSB
+ *
+ * @copyright 2014-2015 CAVRON Jérémy
+ * @package Styles
+ * @author Cavron Jérémy
+ * @version 1.0
+ */
    header('content-type: text/css');
    ob_start('ob_gzhandler');
    header('Cache-Control: max-age=31536000, must-revalidate');
@@ -101,6 +113,10 @@ html, body, .page-container, #sidebar {
     margin: 0px;
     height: 95px;
     float:left;
+}
+
+.nav-tabs-justified {
+    margin-top: 250px;
 }
 
 /* set the fixed height of the footer here */
