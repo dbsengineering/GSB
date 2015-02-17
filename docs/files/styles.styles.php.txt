@@ -4,7 +4,7 @@
 */
 
 /** 
- * Styles CSS est le calque de styles principal de l'application GSB
+ * Styles CSS est le calque de styles principal de l'application GSB.
  *
  * @copyright 2014-2015 CAVRON Jérémy
  * @package styles

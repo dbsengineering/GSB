@@ -73,7 +73,7 @@ $(document).ready(function () {
 
 /**
  * Procédure qui crée des lignes dans la section hors forfait
- * suivant le nombre de lignes en paramètre.
+ * avec les éléments en paramètre.
  * 
  * @param {string} laDate : est la date à intégrer dans les lignes.
  * @param {string} libelle : est le libellé des catégorie frais.

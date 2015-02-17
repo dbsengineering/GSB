@@ -4,7 +4,7 @@
 */
 
 /** 
- * controleur d'état des frais pour l'application GSB.
+ * Controleur d'état des frais pour l'application GSB.
  *
  * @copyright 2014-2015 CAVRON Jérémy
  * @package controleurs
