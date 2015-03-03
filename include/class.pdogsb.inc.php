@@ -31,15 +31,15 @@ class PdoGsb {
     /**
      * @var string $bdd : est le nom de la base de données.
      */
-    private static $bdd = 'dbname=GSBdata';
+    private static $bdd = 'dbname=base_de_donnees';
     /**
      * @var string $user : est le login général pour accéder à la base de données.
      */
-    private static $user = 'admgsb';
+    private static $user = 'utilisateur';
     /**
      * @var string $mdp : est le mot de passe général pour accéder à la base de données.
      */
-    private static $mdp = 'admgsb01';
+    private static $mdp = 'motDepasse';
     /**
      * @var object $monPdo : est le curseur pdo.
      */
