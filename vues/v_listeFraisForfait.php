@@ -35,7 +35,7 @@
                                             <label id="idLabel" for="idFrais"><?php echo $libelle ?></label>
                                         </td>
                                         <td class="022015-a17">
-                                            <label for="ETP"><input type="tel" class="fraisForfait" name="lesFrais<?php echo $idFrais ?>" id="idFrais" value="<?php echo $quantite ?>" />
+                                            <label for="ETP"><input type="tel" class="fraisForfait" name="lesFrais[<?php echo $idFrais ?>]" id="idFrais" value="<?php echo $quantite ?>" />
                                             </label>
                                         </td>
                                         <td class="montantForfait">
