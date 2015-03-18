@@ -12,7 +12,7 @@
                 <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
                     <li id="btnMen" role="presentation"><a role="menuitem" tabindex="-1" href="index.php?uc=gererFrais&action=saisirFrais">Saisie fiche de frais</a></li>
                     <li id="btnMen" role="presentation"><a role="menuitem" tabindex="-1" href="index.php?uc=etatFrais&action=selectionnerMois">Mes fiches de frais</a></li>
-                    <li id="btnMen" role="presentation"><a role="menuitem" tabindex="-1" href="#">Options</a></li>
+                    <li id="btnMen" role="presentation"><a role="menuitem" tabindex="-1" href="index.php?uc=options&action=">Options</a></li>
                     <li id="btnMen" role="presentation" class="divider"></li>
                     <li id="btnMen" role="presentation"><a role="menuitem" tabindex="-1" href="index.php?uc=connexion&action=deconnexion">Déconnexion</a></li>
                 </ul>
@@ -20,7 +20,7 @@
                 
                 <a id="idBtnSaisieF" href="index.php?uc=gererFrais&action=saisirFrais"/>Saisie des Frais</a>
                 <a id="idBtnFicheF" href="index.php?uc=etatFrais&action=selectionnerMois"/>Consultation des Frais</a>
-                <a id="idBtnOption" href="#">Options</a>
+                <a id="idBtnOption" href="index.php?uc=options&action=">Options</a>
                 <a id="idBtnDeconnexion" href="index.php?uc=connexion&action=deconnexion">Déconnexion</a>
             </div>
         </div>
