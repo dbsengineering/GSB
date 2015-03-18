@@ -171,6 +171,12 @@ $('#source-view').on('shown', function () {
                                     <li ><a href="../files/controleurs.c_importVisit.html">c_importVisit.php</a></li>
                                 </ul>
                                 <ul>
+                                    <li ><a href="../files/controleurs.c_options.html">c_options.php</a></li>
+                                </ul>
+                                <ul>
+                                    <li ><a href="../files/controleurs.c_receptionDonnAndroid.html">c_receptionDonnAndroid.php</a></li>
+                                </ul>
+                                <ul>
                                     <li ><a href="../files/controleurs.c_reportSupp.html">c_reportSupp.php</a></li>
                                 </ul>
                                 <ul>
@@ -199,6 +205,12 @@ $('#source-view').on('shown', function () {
                                 </ul>
                                 <ul>
                                     <li ><a href="../files/vues.v_listeMois.html">v_listeMois.php</a></li>
+                                </ul>
+                                <ul>
+                                    <li ><a href="../files/vues.v_message.html">v_message.php</a></li>
+                                </ul>
+                                <ul>
+                                    <li ><a href="../files/vues.v_options.html">v_options.php</a></li>
                                 </ul>
                                 <ul>
                                     <li ><a href="../files/vues.v_pied.html">v_pied.php</a></li>
@@ -276,8 +288,10 @@ $('#source-view').on('shown', function () {
                                         <a href="#method_creeNouvellesLignesFrais" class="">creeNouvellesLignesFrais()</a><br />
                                         <a href="#method_creeNouveauFraisHorsForfait" class="">creeNouveauFraisHorsForfait()</a><br />
                                         <a href="#method_supprimerFraisHorsForfait" class="">supprimerFraisHorsForfait()</a><br />
+                                        <a href="#method_supprimerToutFraisHf" class="">supprimerToutFraisHf()</a><br />
                                         <a href="#method_majEtatFicheFrais" class="">majEtatFicheFrais()</a><br />
                                         <a href="#method_majEtatFicheFraisJustMont" class="">majEtatFicheFraisJustMont()</a><br />
+                                        <a href="#method_setMdpVisiteur" class="">setMdpVisiteur()</a><br />
                                     </section>
                                     <section class="span4">
 
@@ -298,6 +312,7 @@ $('#source-view').on('shown', function () {
                                         <a href="#method_getLesInfosFicheFrais" class="">getLesInfosFicheFrais()</a><br />
                                         <a href="#method_getCharteCouleur" class="">getCharteCouleur()</a><br />
                                         <a href="#method_getTarifForfait" class="">getTarifForfait()</a><br />
+                                        <a href="#method_getInfosVisId" class="">getInfosVisId()</a><br />
                                     </section>
                                 </section>
                                 <section class="row-fluid protected">
@@ -678,768 +693,36 @@ $('#source-view').on('shown', function () {
                                 </aside>
                             </div>
 
-                                                                    
-                                                                            <div class="row-fluid">
-                                                                                <div class="span8 content class">
-                                                                                    <a id="method_creeNouvellesLignesFrais" name="method_creeNouvellesLignesFrais" class="anchor"></a>
-                                                                                    <article class="method">
-                                                                                        <h3 class="public ">creeNouvellesLignesFrais()</h3>
-                                                                                        <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                                                                                        <pre class="signature" style="margin-right: 54px;">creeNouvellesLignesFrais(string  <span class="argument">$idVisiteur</span>, string  <span class="argument">$mois</span>) </pre>
-                                                                                        <p><em>Procédure qui crée une nouvelle fiche de frais et les lignes
-                                                                                            de frais au forfait pour un visiteur et un mois donnés.</em></p>
-                                                                                            <p>Récupère le dernier mois en cours de traitement, met à 'CL'
-                                                                                                son champs idEtat, crée une nouvelle fiche de frais
-                                                                                                avec un idEtat à 'CR' et crée les lignes de frais forfait de
-                                                                                                quantités nulles .</p>
-
-                                                                                                <h4>Paramètres</h4>
-                                                                                                <table class="table table-condensed table-hover">
-                                                                                                    <tr>
-                                                                                                        <td>string</td>
-                                                                                                        <td>$idVisiteur </td>
-                                                                                                        <td><p>: est l'id du visiteur.</p></td>
-                                                                                                    </tr>
-                                                                                                    <tr>
-                                                                                                        <td>string</td>
-                                                                                                        <td>$mois </td>
-                                                                                                        <td><p>: est le mois sous la forme aaaaMM</p></td>
-                                                                                                    </tr>
-                                                                                                </table>
-
-
-
-                                                                                            </article>
-                                                                                        </div>
-                                                                                        <aside class="span4 detailsbar">
-                                                                                            <h1><i class="icon-arrow-down"></i></h1>
-                                                                                            <dl>
-                                                                                            </dl>
-                                                                                            <h2>Tags</h2>
-                                                                                            <table class="table table-condensed">
-                                                                                                <tr><td colspan="2"><em>None found</em></td></tr>
-                                                                                            </table>
-                                                                                        </aside>
-                                                                                    </div>
-
-                                                                                    <div class="row-fluid">
-                                                                                        <div class="span8 content class">
-                                                                                            <a id="method_creeNouveauFraisHorsForfait" name="method_creeNouveauFraisHorsForfait" class="anchor"></a>
-                                                                                            <article class="method">
-                                                                                                <h3 class="public ">creeNouveauFraisHorsForfait()</h3>
-                                                                                                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                                                                                                <pre class="signature" style="margin-right: 54px;">creeNouveauFraisHorsForfait(string  <span class="argument">$idVisiteur</span>, string  <span class="argument">$mois</span>, string  <span class="argument">$libelle</span>, string  <span class="argument">$date</span>, \real  <span class="argument">$montant</span>) </pre>
-                                                                                                <p><em>Procédure qui crée un nouveau frais hors forfait pour un visiteur
-                                                                                                    un mois donné à partir des informations fournies en paramètre.</em></p>
-
-
-                                                                                                    <h4>Paramètres</h4>
-                                                                                                    <table class="table table-condensed table-hover">
-                                                                                                        <tr>
-                                                                                                            <td>string</td>
-                                                                                                            <td>$idVisiteur </td>
-                                                                                                            <td><p>: est l'id du visiteur.</p></td>
-                                                                                                        </tr>
-                                                                                                        <tr>
-                                                                                                            <td>string</td>
-                                                                                                            <td>$mois </td>
-                                                                                                            <td><p>: est le mois sous la forme aaaaMM.</p></td>
-                                                                                                        </tr>
-                                                                                                        <tr>
-                                                                                                            <td>string</td>
-                                                                                                            <td>$libelle </td>
-                                                                                                            <td><p>: est le libelle du frais.</p></td>
-                                                                                                        </tr>
-                                                                                                        <tr>
-                                                                                                            <td>string</td>
-                                                                                                            <td>$date </td>
-                                                                                                            <td><p>: est la date du frais au format français jj//mm/aaaa.</p></td>
-                                                                                                        </tr>
-                                                                                                        <tr>
-                                                                                                            <td>\real</td>
-                                                                                                            <td>$montant </td>
-                                                                                                            <td><p>: est le montant.</p></td>
-                                                                                                        </tr>
-                                                                                                    </table>
-
-
-
-                                                                                                </article>
-                                                                                            </div>
-                                                                                            <aside class="span4 detailsbar">
-                                                                                                <h1><i class="icon-arrow-down"></i></h1>
-                                                                                                <dl>
-                                                                                                </dl>
-                                                                                                <h2>Tags</h2>
-                                                                                                <table class="table table-condensed">
-                                                                                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                                                                                                </table>
-                                                                                            </aside>
-                                                                                        </div>
-
-                                                                                        <div class="row-fluid">
-                                                                                            <div class="span8 content class">
-                                                                                                <a id="method_supprimerFraisHorsForfait" name="method_supprimerFraisHorsForfait" class="anchor"></a>
-                                                                                                <article class="method">
-                                                                                                    <h3 class="public ">supprimerFraisHorsForfait()</h3>
-                                                                                                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                                                                                                    <pre class="signature" style="margin-right: 54px;">supprimerFraisHorsForfait(integer  <span class="argument">$idFrais</span>) </pre>
-                                                                                                    <p><em>Procédure qui supprime le frais hors forfait dont l&#039;id est
-                                                                                                        passé en argument.</em></p>
-
-
-                                                                                                        <h4>Paramètres</h4>
-                                                                                                        <table class="table table-condensed table-hover">
-                                                                                                            <tr>
-                                                                                                                <td>integer</td>
-                                                                                                                <td>$idFrais </td>
-                                                                                                                <td><p>: est l'id du frais.</p></td>
-                                                                                                            </tr>
-                                                                                                        </table>
-
-
-
-                                                                                                    </article>
-                                                                                                </div>
-                                                                                                <aside class="span4 detailsbar">
-                                                                                                    <h1><i class="icon-arrow-down"></i></h1>
-                                                                                                    <dl>
-                                                                                                    </dl>
-                                                                                                    <h2>Tags</h2>
-                                                                                                    <table class="table table-condensed">
-                                                                                                        <tr><td colspan="2"><em>None found</em></td></tr>
-                                                                                                    </table>
-                                                                                                </aside>
-                                                                                            </div>
-
-                                                                                            
-
-                                                                                                    <div class="row-fluid">
-                                                                                                        <div class="span8 content class">
-                                                                                                            <a id="method_majEtatFicheFrais" name="method_majEtatFicheFrais" class="anchor"></a>
-                                                                                                            <article class="method">
-                                                                                                                <h3 class="public ">majEtatFicheFrais()</h3>
-                                                                                                                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                                                                                                                <pre class="signature" style="margin-right: 54px;">majEtatFicheFrais(\strins  <span class="argument">$idVisiteur</span>, string  <span class="argument">$mois</span>, string  <span class="argument">$etat</span>) </pre>
-                                                                                                                <p><em>Procédure qui modifie l&#039;état et la date de modification d&#039;une fiche de frais
-                                                                                                                    et modifie le champ idEtat et met la date de modif à aujourd&#039;hui.</em></p>
-
-
-                                                                                                                    <h4>Paramètres</h4>
-                                                                                                                    <table class="table table-condensed table-hover">
-                                                                                                                        <tr>
-                                                                                                                            <td>\strins</td>
-                                                                                                                            <td>$idVisiteur </td>
-                                                                                                                            <td><p>: est l'id du visiteur.</p></td>
-                                                                                                                        </tr>
-                                                                                                                        <tr>
-                                                                                                                            <td>string</td>
-                                                                                                                            <td>$mois </td>
-                                                                                                                            <td><p>: est le mois sous la forme aaaaMM.</p></td>
-                                                                                                                        </tr>
-                                                                                                                        <tr>
-                                                                                                                            <td>string</td>
-                                                                                                                            <td>$etat </td>
-                                                                                                                            <td><p>: est l'état de la fiche.</p></td>
-                                                                                                                        </tr>
-                                                                                                                    </table>
-
-
-
-                                                                                                                </article>
-                                                                                                            </div>
-                                                                                                            <aside class="span4 detailsbar">
-                                                                                                                <h1><i class="icon-arrow-down"></i></h1>
-                                                                                                                <dl>
-                                                                                                                </dl>
-                                                                                                                <h2>Tags</h2>
-                                                                                                                <table class="table table-condensed">
-                                                                                                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                                                                                                                </table>
-                                                                                                            </aside>
-                                                                                                        </div>
-
-                                                                                                        <div class="row-fluid">
-                                                                                                            <div class="span8 content class">
-                                                                                                                <a id="method_majEtatFicheFraisJustMont" name="method_majEtatFicheFraisJustMont" class="anchor"></a>
-                                                                                                                <article class="method">
-                                                                                                                    <h3 class="public ">majEtatFicheFraisJustMont()</h3>
-                                                                                                                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                                                                                                                    <pre class="signature" style="margin-right: 54px;">majEtatFicheFraisJustMont(string  <span class="argument">$idVisiteur</span>, string  <span class="argument">$mois</span>, string  <span class="argument">$etat</span>) </pre>
-                                                                                                                    <p><em>Procédure qui modifie l&#039;état, le montant et le nombre de
-                                                                                                                        justificatifs de la fiche de frais un calcul est fait
-                                                                                                                        directement dans cette procédure.</em></p>
-
-
-                                                                                                                        <h4>Paramètres</h4>
-                                                                                                                        <table class="table table-condensed table-hover">
-                                                                                                                            <tr>
-                                                                                                                                <td>string</td>
-                                                                                                                                <td>$idVisiteur </td>
-                                                                                                                                <td><p>: est l'id du visiteur.</p></td>
-                                                                                                                            </tr>
-                                                                                                                            <tr>
-                                                                                                                                <td>string</td>
-                                                                                                                                <td>$mois </td>
-                                                                                                                                <td><p>: est le mois sous la forme aaaaMM.</p></td>
-                                                                                                                            </tr>
-                                                                                                                            <tr>
-                                                                                                                                <td>string</td>
-                                                                                                                                <td>$etat </td>
-                                                                                                                                <td><p>: est l'état de la fiche.</p></td>
-                                                                                                                            </tr>
-                                                                                                                        </table>
-
-
-
-                                                                                                                    </article>
-                                                                                                                </div>
-                                                                                                                <aside class="span4 detailsbar">
-                                                                                                                    <h1><i class="icon-arrow-down"></i></h1>
-                                                                                                                    <dl>
-                                                                                                                    </dl>
-                                                                                                                    <h2>Tags</h2>
-                                                                                                                    <table class="table table-condensed">
-                                                                                                                        <tr><td colspan="2"><em>None found</em></td></tr>
-                                                                                                                    </table>
-                                                                                                                </aside>
-                                                                                                            </div>
-
-                                                                                                            
-
-                                                                                                                <div class="row-fluid">
-                                                                                                                    <div class="span8 content class">
-                                                                                                                        <a id="method___construct" name="method___construct" class="anchor"></a>
-                                                                                                                        <article class="method">
-                                                                                                                            <h3 class="private ">__construct()</h3>
-                                                                                                                            <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                                                                                                                            <pre class="signature" style="margin-right: 54px;">__construct() </pre>
-                                                                                                                            <p><em>Constructeur privé, crée l&#039;instance de PDO qui sera sollicitée
-                                                                                                                                pour toutes les méthodes de la classe.</em></p>
-
-                                                                                                                            </article>
-                                                                                                                        </div>
-                                                                                                                        <aside class="span4 detailsbar">
-                                                                                                                            <h1><i class="icon-arrow-down"></i></h1>
-                                                                                                                            <dl>
-                                                                                                                            </dl>
-                                                                                                                            <h2>Tags</h2>
-                                                                                                                            <table class="table table-condensed">
-                                                                                                                                <tr><td colspan="2"><em>None found</em></td></tr>
-                                                                                                                            </table>
-                                                                                                                        </aside>
-                                                                                                                    </div>
-            <!-- Fonctions -->
-            <a id="fonctions" name="fonctions"></a>
-            <div class="row-fluid">
-                <section class="span8 content file">
-                    <h2>Fonctions</h2>
-                </section>
-                <aside class="span4 detailsbar"></aside>
-            </div>
-
-            <div class="row-fluid">
-                <div class="span8 content class">
-                    <a id="method_getPdoGsb" name="method_getPdoGsb" class="anchor"></a>
-                    <article class="method">
-                        <h3 class="public ">getPdoGsb()</h3>
-                        <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                        <pre class="signature" style="margin-right: 54px;">getPdoGsb() : \PdoGsb::monPdoGsb</pre>
-                        <p><em>Fonction statique qui crée l&#039;unique instance de la classe.</em></p>
-                        <p>Appel : $instancePdoGsb = PdoGsb::getPdoGsb();</p>
-
-
-
-                        <h4>Returns</h4>
-                        <a href="../classes/PdoGsb.html#property_monPdoGsb">\PdoGsb::monPdoGsb</a>
-                        &mdash; <p>: est l'unique objet de la classe PdoGsb</p>
-
-                    </article>
-                </div>
-                <aside class="span4 detailsbar">
-                    <h1><i class="icon-arrow-down"></i></h1>
-                    <span class="label label-info">static</span>
-                    <dl>
-                    </dl>
-                    <h2>Tags</h2>
-                    <table class="table table-condensed">
-                        <tr><td colspan="2"><em>None found</em></td></tr>
-                    </table>
-                </aside>
-            </div>
-
-            <div class="row-fluid">
-                <div class="span8 content class">
-                    <a id="method_getInfosVisiteur" name="method_getInfosVisiteur" class="anchor"></a>
-                    <article class="method">
-                        <h3 class="public ">getInfosVisiteur()</h3>
-                        <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                        <pre class="signature" style="margin-right: 54px;">getInfosVisiteur(string  <span class="argument">$login</span>, string  <span class="argument">$mdp</span>) : $ligne</pre>
-                        <p><em>Fonction qui retourne les informations d&#039;un visiteur.</em></p>
-
-
-                        <h4>Paramètres</h4>
-                        <table class="table table-condensed table-hover">
-                            <tr>
-                                <th>Type</th>
-                                <th>Nom</th>
-                                <th>Commentaire</th>
-                            </tr>
-                            <tr>
-                                <td>string</td>
-                                <td>$login</td>
-                                <td><p>: est le login utilisateur.</p></td>
-                            </tr>
-                            <tr>
-                                <td>string</td>
-                                <td>$mdp</td>
-                                <td><p>: est le mot de passe de l'utilisateur.</p></td>
-                            </tr>
-                        </table>
-
-
-                        <h4>Returns</h4>
-                        <table class="table table-condensed table-hover">
-                            <tr>
-                                <th>Type</th>
-                                <th>Nom</th>
-                                <th>Commentaire</th>
-                            </tr>
-                            <tr>
-                                <td>array</td>
-                                <td>$ligne</td>
-                                <td><p>: est l'id, le nom et le prénom sous la forme d'un tableau associatif.</p></td>
-                            </tr>
-                        </table>
-
-                    </article>
-                </div>
-                <aside class="span4 detailsbar">
-                    <h1><i class="icon-arrow-down"></i></h1>
-                    <dl>
-                    </dl>
-                    <h2>Tags</h2>
-                    <table class="table table-condensed">
-                        <tr><td colspan="2"><em>None found</em></td></tr>
-                    </table>
-                </aside>
-            </div>
-
-            <div class="row-fluid">
-                <div class="span8 content class">
-                    <a id="method_getVisiteur" name="method_getVisiteur" class="anchor"></a>
-                    <article class="method">
-                        <h3 class="public ">getVisiteur()</h3>
-                        <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                        <pre class="signature" style="margin-right: 54px;">getVisiteur() : array</pre>
-                        <p><em>Fonction qui récupère tous les id, nom et prénom des visiteurs (commerciaux)
-                            et les retourne.</em></p>
-
-                            <h4>Returns</h4>
-                            array
-                            &mdash; <p>$tousVis : est la liste des visiteur commerciaux.</p>
-
-                    </article>
-                </div>
-                <aside class="span4 detailsbar">
-                    <h1><i class="icon-arrow-down"></i></h1>
-                    <dl>
-                    </dl>
-                    <h2>Tags</h2>
-                    <table class="table table-condensed">
-                        <tr><td colspan="2"><em>None found</em></td></tr>
-                    </table>
-                </aside>
-            </div>
-
-            <div class="row-fluid">
-                <div class="span8 content class">
-                    <a id="method_getLesFraisHorsForfait" name="method_getLesFraisHorsForfait" class="anchor"></a>
-                    <article class="method">
-                        <h3 class="public ">getLesFraisHorsForfait()</h3>
-                        <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                        <pre class="signature" style="margin-right: 54px;">getLesFraisHorsForfait(string  <span class="argument">$idVisiteur</span>, string  <span class="argument">$mois</span>) : array</pre>
-                        <p><em>Fonction qui retourne sous forme d&#039;un tableau associatif toutes
-                        les lignes de frais hors forfait concernées par les deux arguments.</em></p>
-                        <p>La boucle foreach ne peut être utilisée ici car on procède
-                        à une modification de la structure itérée - transformation du champ date.</p>
-
-                        <h4>Paramètres</h4>
-                        <table class="table table-condensed table-hover">
-                            <tr>
-                                <td>string</td>
-                                <td>$idVisiteur </td>
-                                <td><p>: est l'id du visiteur.</p></td>
-                            </tr>
-                            <tr>
-                                <td>string</td>
-                                <td>$mois </td>
-                                <td><p>: est le mois sous la forme aaaamm.</p></td>
-                            </tr>
-                        </table>
-
-
-                        <h4>Returns</h4>
-                        array
-                        &mdash; <p>$lesLignes : tous les champs des lignes de frais hors forfait sous la forme d'un tableau associatif .</p>
-
-                    </article>
-                </div>
-                <aside class="span4 detailsbar">
-                    <h1><i class="icon-arrow-down"></i></h1>
-                    <dl>
-                    </dl>
-                    <h2>Tags</h2>
-                    <table class="table table-condensed">
-                        <tr><td colspan="2"><em>None found</em></td></tr>
-                    </table>
-                </aside>
-            </div>
-
-            <div class="row-fluid">
-                <div class="span8 content class">
-                    <a id="method_getNbjustificatifs" name="method_getNbjustificatifs" class="anchor"></a>
-                        <article class="method">
-                            <h3 class="public ">getNbjustificatifs()</h3>
-                            <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                            <pre class="signature" style="margin-right: 54px;">getNbjustificatifs(string  <span class="argument">$idVisiteur</span>, string  <span class="argument">$mois</span>) : integer</pre>
-                            <p><em>Fonction qui retourne le nombre de justificatif d&#039;un visiteur
-                            pour un mois donné.</em></p>
-
-
-                            <h4>Paramètres</h4>
-                            <table class="table table-condensed table-hover">
-                                <tr>
-                                    <td>string</td>
-                                    <td>$idVisiteur </td>
-                                    <td><p>: est l'id du visiteur.</p></td>
-                                </tr>
-                                <tr>
-                                                                        <td>string</td>
-                                                                        <td>$mois </td>
-                                                                        <td><p>: est le mois sous la forme aaaamm.</p></td>
-                                </tr>
-                            </table>
-
-
-                            <h4>Returns</h4>
-                            integer
-                            &mdash; <p>$laLigne['nb'] : est le nombre entier de justificatifs.</p>
-
-                        </article>
-                    </div>
-                    <aside class="span4 detailsbar">
-                        <h1><i class="icon-arrow-down"></i></h1>
-                        <dl>
-                        </dl>
-                        <h2>Tags</h2>
-                        <table class="table table-condensed">
-                            <tr><td colspan="2"><em>None found</em></td></tr>
-                        </table>
-                    </aside>
-                </div>
-
-
-            <div class="row-fluid">
-                <div class="span8 content class">
-                    <a id="method_getLesFraisForfait" name="method_getLesFraisForfait" class="anchor"></a>
-                    <article class="method">
-                        <h3 class="public ">getLesFraisForfait()</h3>
-                        <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                        <pre class="signature" style="margin-right: 54px;">getLesFraisForfait(string  <span class="argument">$idVisiteur</span>, string  <span class="argument">$mois</span>) : array</pre>
-                        <p><em>Fonction qui retourne sous forme d&#039;un tableau associatif toutes
-                            les lignes de frais au forfait concernées par les deux arguments.</em></p>
-
-
-                            <h4>Paramètres</h4>
-                            <table class="table table-condensed table-hover">
-                                <tr>
-                                    <td>string</td>
-                                    <td>$idVisiteur </td>
-                                    <td><p>: est l'id du visiteur.</p></td>
-                                </tr>
-                                <tr>
-                                    <td>string</td>
-                                    <td>$mois </td>
-                                    <td><p>: est le mois sous la forme aaaamm.</p></td>
-                                </tr>
-                            </table>
-
-
-                            <h4>Returns</h4>
-                            array
-                            &mdash; <p>$lesLignes : est l'id, le libelle et la quantité sous la forme d'un tableau associatif</p>
-
-                        </article>
-                    </div>
-                    <aside class="span4 detailsbar">
-                        <h1><i class="icon-arrow-down"></i></h1>
-                        <dl>
-                        </dl>
-                        <h2>Tags</h2>
-                        <table class="table table-condensed">
-                            <tr><td colspan="2"><em>None found</em></td></tr>
-                        </table>
-                    </aside>
-                </div>
-                <div class="row-fluid">
-                    <div class="span8 content class">
-                        <a id="method_getLesIdFrais" name="method_getLesIdFrais" class="anchor"></a>
-                        <article class="method">
-                            <h3 class="public ">getLesIdFrais()</h3>
-                            <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                            <pre class="signature" style="margin-right: 54px;">getLesIdFrais() : array</pre>
-                            <p><em>Fonction qui retourne tous les id de la table FraisForfait.</em></p>
-
-
-
-
-                            <h4>Returns</h4>
-                            array
-                            &mdash; <p>$lesLignes : est un tableau associatif.</p>
-
-                        </article>
-                    </div>
-                    <aside class="span4 detailsbar">
-                        <h1><i class="icon-arrow-down"></i></h1>
-                        <dl>
-                        </dl>
-                        <h2>Tags</h2>
-                        <table class="table table-condensed">
-                            <tr><td colspan="2"><em>None found</em></td></tr>
-                        </table>
-                    </aside>
-                </div>
-
-                <div class="row-fluid">
-                    <div class="span8 content class">
-                        <a id="method_getMoisFicheHF" name="method_getMoisFicheHF" class="anchor"></a>
-                        <article class="method">
-                            <h3 class="public ">getMoisFicheHF()</h3>
-                            <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                            <pre class="signature" style="margin-right: 54px;">getMoisFicheHF(integer  <span class="argument">$idHF</span>) : string</pre>
-                            <p><em>Fonction qui retourne le mois de la ligne frais hors forfait
-                                avec l&#039;id passé en paramètre.</em></p>
-
-
-                                <h4>Paramètres</h4>
-                                <table class="table table-condensed table-hover">
-                                    <tr>
-                                        <td>integer</td>
-                                        <td>$idHF </td>
-                                        <td><p>: est l'id de la ligne de frais hors forfait.</p></td>
-                                    </tr>
-                                </table>
-
-
-                                <h4>Returns</h4>
-                                string
-                                &mdash; <p>$mois : est le mois de la ligne hors forfait (aaaaMM)</p>
-
-                            </article>
-                        </div>
-                        <aside class="span4 detailsbar">
-                            <h1><i class="icon-arrow-down"></i></h1>
-                            <dl>
-                            </dl>
-                            <h2>Tags</h2>
-                            <table class="table table-condensed">
-                                <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-                        </aside>
-                    </div>
-
-                    <div class="row-fluid">
-                        <div class="span8 content class">
-                            <a id="method_estPremierFraisMois" name="method_estPremierFraisMois" class="anchor"></a>
-                            <article class="method">
-                                <h3 class="public ">estPremierFraisMois()</h3>
-                                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                                <pre class="signature" style="margin-right: 54px;">estPremierFraisMois(string  <span class="argument">$idVisiteur</span>, string  <span class="argument">$mois</span>) : boolean</pre>
-                                <p><em>Fonction qui teste si un visiteur possède une fiche de frais
-                                    pour le mois passé en argument.</em></p>
-
-
-                                    <h4>Paramètres</h4>
-                                    <table class="table table-condensed table-hover">
-                                        <tr>
-                                            <td>string</td>
-                                            <td>$idVisiteur </td>
-                                            <td><p>: est l'id du visiteur.</p></td>
-                                        </tr>
-                                        <tr>
-                                            <td>string</td>
-                                            <td>$mois </td>
-                                            <td><p>: est le mois sous la forme aaaaMM.</p></td>
-                                        </tr>
-                                    </table>
-
-
-                                    <h4>Returns</h4>
-                                    boolean
-                                    &mdash; <p>$ok : est un booléen vrai ou faux.</p>
-
-                                </article>
-                            </div>
-                            <aside class="span4 detailsbar">
-                                <h1><i class="icon-arrow-down"></i></h1>
-                                <dl>
-                                </dl>
-                                <h2>Tags</h2>
-                                <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                                </table>
-                            </aside>
-                        </div>
-
-                        <div class="row-fluid">
-                            <div class="span8 content class">
-                                <a id="method_estPremierFraisMoisPourCmp" name="method_estPremierFraisMoisPourCmp" class="anchor"></a>
-                                <article class="method">
-                                    <h3 class="public ">estPremierFraisMoisPourCmp()</h3>
-                                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                                    <pre class="signature" style="margin-right: 54px;">estPremierFraisMoisPourCmp(string  <span class="argument">$idVisiteur</span>, string  <span class="argument">$mois</span>) : boolean</pre>
-                                    <p><em>Fonction qui teste si un visiteur possède une fiche de frais
-                                        pour le mois passé en argument. Cette fonction sert au comptable.</em></p>
-
-
-                                        <h4>Paramètres</h4>
-                                        <table class="table table-condensed table-hover">
-                                            <tr>
-                                                <td>string</td>
-                                                <td>$idVisiteur </td>
-                                                <td><p>: est l'id du visiteur.</p></td>
-                                            </tr>
-                                            <tr>
-                                                <td>string</td>
-                                                <td>$mois </td>
-                                                <td><p>: est le mois sous la forme aaaaMM.</p></td>
-                                            </tr>
-                                        </table>
-
-
-                                        <h4>Returns</h4>
-                                        boolean
-                                        &mdash; <p>$ok : est un booléen vrai ou faux</p>
-
-                                    </article>
-                                </div>
-                                <aside class="span4 detailsbar">
-                                    <h1><i class="icon-arrow-down"></i></h1>
-                                    <dl>
-                                    </dl>
-                                    <h2>Tags</h2>
-                                    <table class="table table-condensed">
-                                        <tr><td colspan="2"><em>None found</em></td></tr>
-                                    </table>
-                                </aside>
-                            </div>
-
+                            
                             <div class="row-fluid">
                                 <div class="span8 content class">
-                                    <a id="method_dernierMoisSaisi" name="method_dernierMoisSaisi" class="anchor"></a>
+                                    <a id="method_creeNouvellesLignesFrais" name="method_creeNouvellesLignesFrais" class="anchor"></a>
                                     <article class="method">
-                                        <h3 class="public ">dernierMoisSaisi()</h3>
+                                        <h3 class="public ">creeNouvellesLignesFrais()</h3>
                                         <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                                        <pre class="signature" style="margin-right: 54px;">dernierMoisSaisi(string  <span class="argument">$idVisiteur</span>) : string</pre>
-                                        <p><em>Fonction qui retourne le dernier mois en cours d&#039;un visiteur.</em></p>
-
-
-                                        <h4>Paramètres</h4>
-                                        <table class="table table-condensed table-hover">
-                                            <tr>
-                                                <td>string</td>
-                                                <td>$idVisiteur </td>
-                                                <td><p>: est l'id du visiteur.</p></td>
-                                            </tr>
-                                        </table>
-
-
-                                        <h4>Returns</h4>
-                                        string
-                                        &mdash; <p>$dernierMois : est le dernier mois en cours aaaaMM.</p>
-
-                                    </article>
-                                </div>
-                                <aside class="span4 detailsbar">
-                                    <h1><i class="icon-arrow-down"></i></h1>
-                                    <dl>
-                                    </dl>
-                                    <h2>Tags</h2>
-                                    <table class="table table-condensed">
-                                        <tr><td colspan="2"><em>None found</em></td></tr>
-                                    </table>
-                                </aside>
-                            </div>
-
-
-                            <div class="row-fluid">
-                                <div class="span8 content class">
-                                    <a id="method_getLesMoisDisponibles" name="method_getLesMoisDisponibles" class="anchor"></a>
-                                    <article class="method">
-                                        <h3 class="public ">getLesMoisDisponibles()</h3>
-                                        <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                                        <pre class="signature" style="margin-right: 54px;">getLesMoisDisponibles(string  <span class="argument">$idVisiteur</span>) : array</pre>
-                                        <p><em>Fonction qui retourne les mois pour lesquels un visiteur
-                                            a une fiche de frais.</em></p>
-
-
-                                            <h4>Paramètres</h4>
-                                            <table class="table table-condensed table-hover">
-                                                <tr>
-                                                    <td>string</td>
-                                                    <td>$idVisiteur </td>
-                                                    <td><p>: est l'id du visiteur.</p></td>
-                                                </tr>
-                                            </table>
-
-
-                                            <h4>Returns</h4>
-                                            array
-                                            &mdash; <p>$lesMois est un tableau associatif de clé un mois -aaaamm- et de valeurs l'année et le mois correspondant.</p>
-
-                                        </article>
-                                    </div>
-                                    <aside class="span4 detailsbar">
-                                        <h1><i class="icon-arrow-down"></i></h1>
-                                        <dl>
-                                        </dl>
-                                        <h2>Tags</h2>
-                                        <table class="table table-condensed">
-                                            <tr><td colspan="2"><em>None found</em></td></tr>
-                                        </table>
-                                    </aside>
-                                </div>
-
-                                <div class="row-fluid">
-                                    <div class="span8 content class">
-                                        <a id="method_getLesInfosFicheFrais" name="method_getLesInfosFicheFrais" class="anchor"></a>
-                                        <article class="method">
-                                            <h3 class="public ">getLesInfosFicheFrais()</h3>
-                                            <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                                            <pre class="signature" style="margin-right: 54px;">getLesInfosFicheFrais(  <span class="argument">$idVisiteur</span>, string  <span class="argument">$mois</span>) : array</pre>
-                                            <p><em>Fonction qui retourne les informations d&#039;une fiche de frais
-                                                d&#039;un visiteur pour un mois donné.</em></p>
-
+                                        <pre class="signature" style="margin-right: 54px;">creeNouvellesLignesFrais(string  <span class="argument">$idVisiteur</span>, string  <span class="argument">$mois</span>) </pre>
+                                        <p><em>Procédure qui crée une nouvelle fiche de frais et les lignes
+                                            de frais au forfait pour un visiteur et un mois donnés.</em></p>
+                                            <p>Récupère le dernier mois en cours de traitement, met à 'CL'
+                                                son champs idEtat, crée une nouvelle fiche de frais
+                                                avec un idEtat à 'CR' et crée les lignes de frais forfait de
+                                                quantités nulles .</p>
 
                                                 <h4>Paramètres</h4>
                                                 <table class="table table-condensed table-hover">
                                                     <tr>
-                                                        <td></td>
+                                                        <td>string</td>
                                                         <td>$idVisiteur </td>
-                                                        <td></td>
+                                                        <td><p>: est l'id du visiteur.</p></td>
                                                     </tr>
                                                     <tr>
                                                         <td>string</td>
                                                         <td>$mois </td>
-                                                        <td><p>: est le mois sous la forme aaaaMM.</p></td>
+                                                        <td><p>: est le mois sous la forme aaaaMM</p></td>
                                                     </tr>
                                                 </table>
 
 
-                                                <h4>Returns</h4>
-                                                array
-                                                &mdash; <p>$laLigne : est un tableau avec des champs de jointure entre une fiche de frais et la ligne d'état</p>
 
                                             </article>
                                         </div>
@@ -1456,28 +739,45 @@ $('#source-view').on('shown', function () {
 
                                     <div class="row-fluid">
                                         <div class="span8 content class">
-                                            <a id="method_getCharteCouleur" name="method_getCharteCouleur" class="anchor"></a>
+                                            <a id="method_creeNouveauFraisHorsForfait" name="method_creeNouveauFraisHorsForfait" class="anchor"></a>
                                             <article class="method">
-                                                <h3 class="public ">getCharteCouleur()</h3>
+                                                <h3 class="public ">creeNouveauFraisHorsForfait()</h3>
                                                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                                                <pre class="signature" style="margin-right: 54px;">getCharteCouleur(integer  <span class="argument">$idCouleur</span>) : array</pre>
-                                                <p><em>Fonction qui récupère les couleurs pour chaque éléments par rapport aux
-                                                    préférences de l&#039;utilisateur.</em></p>
+                                                <pre class="signature" style="margin-right: 54px;">creeNouveauFraisHorsForfait(string  <span class="argument">$idVisiteur</span>, string  <span class="argument">$mois</span>, string  <span class="argument">$libelle</span>, string  <span class="argument">$date</span>, \real  <span class="argument">$montant</span>) </pre>
+                                                <p><em>Procédure qui crée un nouveau frais hors forfait pour un visiteur
+                                                    un mois donné à partir des informations fournies en paramètre.</em></p>
 
 
                                                     <h4>Paramètres</h4>
                                                     <table class="table table-condensed table-hover">
                                                         <tr>
-                                                            <td>integer</td>
-                                                            <td>$idCouleur </td>
-                                                            <td><p>: est l'id de la couleur.</p></td>
+                                                            <td>string</td>
+                                                            <td>$idVisiteur </td>
+                                                            <td><p>: est l'id du visiteur.</p></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>string</td>
+                                                            <td>$mois </td>
+                                                            <td><p>: est le mois sous la forme aaaaMM.</p></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>string</td>
+                                                            <td>$libelle </td>
+                                                            <td><p>: est le libelle du frais.</p></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>string</td>
+                                                            <td>$date </td>
+                                                            <td><p>: est la date du frais au format français jj//mm/aaaa.</p></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>\real</td>
+                                                            <td>$montant </td>
+                                                            <td><p>: est le montant.</p></td>
                                                         </tr>
                                                     </table>
 
 
-                                                    <h4>Returns</h4>
-                                                    array
-                                                    &mdash; <p>$listCouleur : est la liste des paramètres couleurs.</p>
 
                                                 </article>
                                             </div>
@@ -1494,20 +794,97 @@ $('#source-view').on('shown', function () {
 
                                         <div class="row-fluid">
                                             <div class="span8 content class">
-                                                <a id="method_getTarifForfait" name="method_getTarifForfait" class="anchor"></a>
+                                                <a id="method_supprimerFraisHorsForfait" name="method_supprimerFraisHorsForfait" class="anchor"></a>
                                                 <article class="method">
-                                                    <h3 class="public ">getTarifForfait()</h3>
+                                                    <h3 class="public ">supprimerFraisHorsForfait()</h3>
                                                     <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                                                    <pre class="signature" style="margin-right: 54px;">getTarifForfait() : array</pre>
-                                                    <p><em>Fonction qui renvoie les tarifs forfaitaires.</em></p>
+                                                    <pre class="signature" style="margin-right: 54px;">supprimerFraisHorsForfait(integer  <span class="argument">$idFrais</span>) </pre>
+                                                    <p><em>Procédure qui supprime le frais hors forfait dont l&#039;id est passé en argument.</em></p>
+                                                    <h4>Paramètres</h4>
+                                                    <table class="table table-condensed table-hover">
+                                                        <tr>
+                                                            <td>integer</td>
+                                                            <td>$idFrais</td>
+                                                            <td><p>: est l'id du frais.</p></td>
+                                                        </tr>
+                                                    </table>
+
+                                                </article>
+                                            </div>
+                                            <aside class="span4 detailsbar">
+                                                <h1><i class="icon-arrow-down"></i></h1>
+                                                <dl></dl>
+                                                <h2>Tags</h2>
+                                                <table class="table table-condensed">
+                                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                                                </table>
+                                            </aside>
+                                        </div>
+
+                                        <div class="row-fluid">
+                                            <div class="span8 content class">
+                                                <a id="method_supprimerToutFraisHf" name="method_supprimerToutFraisHf" class="anchor"></a>
+                                                <article class="method">
+                                                    <h3 class="public ">supprimerToutFraisHf()</h3>
+                                                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                                                    <pre class="signature" style="margin-right: 54px;">supprimerToutFraisHf(string  <span class="argument">$idVisiteur</span>, string <span class="argument">$mois</span>) </pre>
+                                                    <p><em>Procédure qui supprime tous les frais hors forfait d'un mois et d'un id passés en paramètres.</em></p>
+                                                    <h4>Paramètres</h4>
+                                                    <table class="table table-condensed table-hover">
+                                                        <tr>
+                                                            <td>string</td>
+                                                            <td>$idVisiteur</td>
+                                                            <td><p>: est l'id du visiteur.</p></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>string</td>
+                                                            <td>$mois</td>
+                                                            <td><p>: est le mois sous la forme aaaaMM.</p></td>
+                                                        </tr>
+                                                    </table>
+
+                                                </article>
+                                            </div>
+                                            <aside class="span4 detailsbar">
+                                                <h1><i class="icon-arrow-down"></i></h1>
+                                                <dl></dl>
+                                                <h2>Tags</h2>
+                                                <table class="table table-condensed">
+                                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                                                </table>
+                                            </aside>
+                                        </div>
+
+                                        
+
+                                        <div class="row-fluid">
+                                            <div class="span8 content class">
+                                                <a id="method_majEtatFicheFrais" name="method_majEtatFicheFrais" class="anchor"></a>
+                                                <article class="method">
+                                                    <h3 class="public ">majEtatFicheFrais()</h3>
+                                                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                                                    <pre class="signature" style="margin-right: 54px;">majEtatFicheFrais(\strins  <span class="argument">$idVisiteur</span>, string  <span class="argument">$mois</span>, string  <span class="argument">$etat</span>) </pre>
+                                                    <p><em>Procédure qui modifie l&#039;état et la date de modification d&#039;une fiche de frais et modifie le champ idEtat et met la date de modif à aujourd&#039;hui.</em></p>
 
 
-
-
-                                                    <h4>Returns</h4>
-                                                    array
-                                                    &mdash; <p>$listForfaits : est la liste des tarifs forfaitaires.</p>
-
+                                                    <h4>Paramètres</h4>
+                                                    <table class="table table-condensed table-hover">
+                                                        <tr>
+                                                            <td>string</td>
+                                                            <td>$idVisiteur</td>
+                                                            <td><p>: est l'id du visiteur.</p></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>string</td>
+                                                            <td>$mois</td>
+                                                            <td><p>: est le mois sous la forme aaaaMM.</p></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>string</td>
+                                                            <td>$etat</td>
+                                                            <td><p>: est l'état de la fiche.</p></td>
+                                                        </tr>
+                                                    </table>
                                                 </article>
                                             </div>
                                             <aside class="span4 detailsbar">
@@ -1522,61 +899,890 @@ $('#source-view').on('shown', function () {
                                         </div>
 
 
-        </div>
-    </section>
+                                       
 
-                                                                                                            <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
-                                                                                                                <div class="modal-header">
-                                                                                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                                                                                                    <h3 id="source-view-label">class.pdogsb.inc.php</h3>
-                                                                                                                </div>
-                                                                                                                <div class="modal-body">
-                                                                                                                    <pre data-src="../files/include.class.pdogsb.inc.php.txt" class="language-php line-numbers"></pre>
-                                                                                                                </div>
+
+
+
+                                        <div class="row-fluid">
+                                            <div class="span8 content class">
+                                                <a id="method_majEtatFicheFraisJustMont" name="method_majEtatFicheFraisJustMont" class="anchor"></a>
+                                                <article class="method">
+                                                    <h3 class="public ">majEtatFicheFraisJustMont()</h3>
+                                                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                                                    <pre class="signature" style="margin-right: 54px;">majEtatFicheFraisJustMont(string  <span class="argument">$idVisiteur</span>, string  <span class="argument">$mois</span>, string  <span class="argument">$etat</span>) </pre>
+                                                    <p><em>Procédure qui modifie l&#039;état, le montant et le nombre de
+                                                        justificatifs de la fiche de frais un calcul est fait
+                                                        directement dans cette procédure.</em></p>
+
+
+                                                        <h4>Paramètres</h4>
+                                                        <table class="table table-condensed table-hover">
+                                                            <tr>
+                                                                <td>string</td>
+                                                                <td>$idVisiteur </td>
+                                                                <td><p>: est l'id du visiteur.</p></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>string</td>
+                                                                <td>$mois </td>
+                                                                <td><p>: est le mois sous la forme aaaaMM.</p></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>string</td>
+                                                                <td>$etat </td>
+                                                                <td><p>: est l'état de la fiche.</p></td>
+                                                            </tr>
+                                                        </table>
+
+
+
+                                                    </article>
+                                                </div>
+                                                <aside class="span4 detailsbar">
+                                                    <h1><i class="icon-arrow-down"></i></h1>
+                                                    <dl>
+                                                    </dl>
+                                                    <h2>Tags</h2>
+                                                    <table class="table table-condensed">
+                                                        <tr><td colspan="2"><em>None found</em></td></tr>
+                                                    </table>
+                                                </aside>
+                                            </div>
+
+
+                                             <div class="row-fluid">
+                                            <div class="span8 content class">
+                                                <a id="method_setMdpVisiteur" name="method_setMdpVisiteur" class="anchor"></a>
+                                                <article class="method">
+                                                    <h3 class="public ">setMdpVisiteur()</h3>
+                                                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                                                    <pre class="signature" style="margin-right: 54px;">setMdpVisiteur(string  <span class="argument">$idVisiteur</span>, string  <span class="argument">$nouvMdp</span>) </pre>
+                                                    <p><em>Procédure qui modifie le mot de passe du visiteur.</em></p>
+
+
+                                                    <h4>Paramètres</h4>
+                                                    <table class="table table-condensed table-hover">
+                                                        <tr>
+                                                            <td>string</td>
+                                                            <td>$idVisiteur</td>
+                                                            <td><p>: est l'id du visiteur.</p></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>string</td>
+                                                            <td>$nouvMdp</td>
+                                                            <td><p>: est le nouveau mot de passe.</p></td>
+                                                        </tr>
+                                                    </table>
+                                                </article>
+                                            </div>
+                                            <aside class="span4 detailsbar">
+                                                <h1><i class="icon-arrow-down"></i></h1>
+                                                <dl>
+                                                </dl>
+                                                <h2>Tags</h2>
+                                                <table class="table table-condensed">
+                                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                                                </table>
+                                            </aside>
+                                        </div>
+
+                                            
+
+                                            <div class="row-fluid">
+                                                <div class="span8 content class">
+                                                    <a id="method___construct" name="method___construct" class="anchor"></a>
+                                                    <article class="method">
+                                                        <h3 class="private ">__construct()</h3>
+                                                        <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                                                        <pre class="signature" style="margin-right: 54px;">__construct() </pre>
+                                                        <p><em>Constructeur privé, crée l&#039;instance de PDO qui sera sollicitée
+                                                            pour toutes les méthodes de la classe.</em></p>
+
+                                                        </article>
+                                                    </div>
+                                                    <aside class="span4 detailsbar">
+                                                        <h1><i class="icon-arrow-down"></i></h1>
+                                                        <dl>
+                                                        </dl>
+                                                        <h2>Tags</h2>
+                                                        <table class="table table-condensed">
+                                                            <tr><td colspan="2"><em>None found</em></td></tr>
+                                                        </table>
+                                                    </aside>
+                                                </div>
+                                                <!-- Fonctions -->
+                                                <a id="fonctions" name="fonctions"></a>
+                                                <div class="row-fluid">
+                                                    <section class="span8 content file">
+                                                        <h2>Fonctions</h2>
+                                                    </section>
+                                                    <aside class="span4 detailsbar"></aside>
+                                                </div>
+
+                                                <div class="row-fluid">
+                                                    <div class="span8 content class">
+                                                        <a id="method_getPdoGsb" name="method_getPdoGsb" class="anchor"></a>
+                                                        <article class="method">
+                                                            <h3 class="public ">getPdoGsb()</h3>
+                                                            <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                                                            <pre class="signature" style="margin-right: 54px;">getPdoGsb() : \PdoGsb::monPdoGsb</pre>
+                                                            <p><em>Fonction statique qui crée l&#039;unique instance de la classe.</em></p>
+                                                            <p>Appel : $instancePdoGsb = PdoGsb::getPdoGsb();</p>
+
+
+
+                                                            <h4>Returns</h4>
+                                    <table class="table table-condensed table-hover">
+                                        <tr>
+                                            <td>object</td>
+                                            <td><a href="../classes/PdoGsb.html#property_monPdoGsb">PdoGsb::monPdoGsb</a></td>
+                                            <td><p>: est l'unique objet de la classe PdoGsb.</p></td>
+                                        </tr>
+                                    </table>
+                                                         
+
+                                                        </article>
+                                                    </div>
+                                                    <aside class="span4 detailsbar">
+                                                        <h1><i class="icon-arrow-down"></i></h1>
+                                                        <span class="label label-info">static</span>
+                                                        <dl>
+                                                        </dl>
+                                                        <h2>Tags</h2>
+                                                        <table class="table table-condensed">
+                                                            <tr><td colspan="2"><em>None found</em></td></tr>
+                                                        </table>
+                                                    </aside>
+                                                </div>
+
+                                                <div class="row-fluid">
+                                                    <div class="span8 content class">
+                                                        <a id="method_getInfosVisiteur" name="method_getInfosVisiteur" class="anchor"></a>
+                                                        <article class="method">
+                                                            <h3 class="public ">getInfosVisiteur()</h3>
+                                                            <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                                                            <pre class="signature" style="margin-right: 54px;">getInfosVisiteur(string  <span class="argument">$login</span>, string  <span class="argument">$mdp</span>) : $ligne</pre>
+                                                            <p><em>Fonction qui retourne les informations d&#039;un visiteur.</em></p>
+
+
+                                                            <h4>Paramètres</h4>
+                                                            <table class="table table-condensed table-hover">
+                                                                <tr>
+                                                                    <th>Type</th>
+                                                                    <th>Nom</th>
+                                                                    <th>Commentaire</th>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>string</td>
+                                                                    <td>$login</td>
+                                                                    <td><p>: est le login utilisateur.</p></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>string</td>
+                                                                    <td>$mdp</td>
+                                                                    <td><p>: est le mot de passe de l'utilisateur.</p></td>
+                                                                </tr>
+                                                            </table>
+
+
+                                                            <h4>Returns</h4>
+                                                            <table class="table table-condensed table-hover">
+                                                                <tr>
+                                                                    <th>Type</th>
+                                                                    <th>Nom</th>
+                                                                    <th>Commentaire</th>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>array</td>
+                                                                    <td>$ligne</td>
+                                                                    <td><p>: est l'id, le nom et le prénom sous la forme d'un tableau associatif.</p></td>
+                                                                </tr>
+                                                            </table>
+
+                                                        </article>
+                                                    </div>
+                                                    <aside class="span4 detailsbar">
+                                                        <h1><i class="icon-arrow-down"></i></h1>
+                                                        <dl>
+                                                        </dl>
+                                                        <h2>Tags</h2>
+                                                        <table class="table table-condensed">
+                                                            <tr><td colspan="2"><em>None found</em></td></tr>
+                                                        </table>
+                                                    </aside>
+                                                </div>
+
+                                                <div class="row-fluid">
+                                                    <div class="span8 content class">
+                                                        <a id="method_getVisiteur" name="method_getVisiteur" class="anchor"></a>
+                                                        <article class="method">
+                                                            <h3 class="public ">getVisiteur()</h3>
+                                                            <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                                                            <pre class="signature" style="margin-right: 54px;">getVisiteur() : array</pre>
+                                                            <p><em>Fonction qui récupère tous les id, nom et prénom des visiteurs (commerciaux)
+                                                                et les retourne.</em></p>
+
+                                   <h4>Returns</h4>
+                                   <table class="table table-condensed table-hover">
+                                        <tr>
+                                            <td>array</td>
+                                            <td>$tousVis</td>
+                                            <td><p>: est la liste des visiteur commerciaux.</p></td>
+                                        </tr>
+                                    </table>
+                                                                
+
+                                                            </article>
+                                                        </div>
+                                                        <aside class="span4 detailsbar">
+                                                            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                            </dl>
+                                                            <h2>Tags</h2>
+                                                            <table class="table table-condensed">
+                                                                <tr><td colspan="2"><em>None found</em></td></tr>
+                                                            </table>
+                                                        </aside>
+                                                    </div>
+
+                                                    <div class="row-fluid">
+                                                        <div class="span8 content class">
+                                                            <a id="method_getLesFraisHorsForfait" name="method_getLesFraisHorsForfait" class="anchor"></a>
+                                                            <article class="method">
+                                                                <h3 class="public ">getLesFraisHorsForfait()</h3>
+                                                                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                                                                <pre class="signature" style="margin-right: 54px;">getLesFraisHorsForfait(string  <span class="argument">$idVisiteur</span>, string  <span class="argument">$mois</span>) : array</pre>
+                                                                <p><em>Fonction qui retourne sous forme d&#039;un tableau associatif toutes
+                                                                    les lignes de frais hors forfait concernées par les deux arguments.</em></p>
+                                                                    <p>La boucle foreach ne peut être utilisée ici car on procède
+                                                                        à une modification de la structure itérée - transformation du champ date.</p>
+
+                                                                        <h4>Paramètres</h4>
+                                                                        <table class="table table-condensed table-hover">
+                                                                            <tr>
+                                                                                <td>string</td>
+                                                                                <td>$idVisiteur </td>
+                                                                                <td><p>: est l'id du visiteur.</p></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>string</td>
+                                                                                <td>$mois </td>
+                                                                                <td><p>: est le mois sous la forme aaaamm.</p></td>
+                                                                            </tr>
+                                                                        </table>
+
+
+                                           <h4>Returns</h4>
+                                    <table class="table table-condensed table-hover">
+                                        <tr>
+                                            <td>array</td>
+                                            <td>$lesLignes</td>
+                                            <td><p>: tous les champs des lignes de frais hors forfait sous la forme d'un tableau associatif.</p></td>
+                                        </tr>
+                                    </table>
+                                                                      
+
+                                                                    </article>
+                                                                </div>
+                                                                <aside class="span4 detailsbar">
+                                                                    <h1><i class="icon-arrow-down"></i></h1>
+                                                                    <dl>
+                                                                    </dl>
+                                                                    <h2>Tags</h2>
+                                                                    <table class="table table-condensed">
+                                                                        <tr><td colspan="2"><em>None found</em></td></tr>
+                                                                    </table>
+                                                                </aside>
+                                                            </div>
+
+                                                            <div class="row-fluid">
+                                                                <div class="span8 content class">
+                                                                    <a id="method_getNbjustificatifs" name="method_getNbjustificatifs" class="anchor"></a>
+                                                                    <article class="method">
+                                                                        <h3 class="public ">getNbjustificatifs()</h3>
+                                                                        <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                                                                        <pre class="signature" style="margin-right: 54px;">getNbjustificatifs(string  <span class="argument">$idVisiteur</span>, string  <span class="argument">$mois</span>) : integer</pre>
+                                                                        <p><em>Fonction qui retourne le nombre de justificatif d&#039;un visiteur
+                                                                            pour un mois donné.</em></p>
+
+
+                                                                            <h4>Paramètres</h4>
+                                                                            <table class="table table-condensed table-hover">
+                                                                                <tr>
+                                                                                    <td>string</td>
+                                                                                    <td>$idVisiteur </td>
+                                                                                    <td><p>: est l'id du visiteur.</p></td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td>string</td>
+                                                                                    <td>$mois </td>
+                                                                                    <td><p>: est le mois sous la forme aaaamm.</p></td>
+                                                                                </tr>
+                                                                            </table>
+
+
+                                                                            <h4>Returns</h4>
+                                    <table class="table table-condensed table-hover">
+                                        <tr>
+                                            <td>integer</td>
+                                            <td>$laLigne['nb']</td>
+                                            <td><p>: est le nombre entier de justificatifs.</p></td>
+                                        </tr>
+                                    </table>
+                                                                           
+
+                                                                        </article>
+                                                                    </div>
+                                                                    <aside class="span4 detailsbar">
+                                                                        <h1><i class="icon-arrow-down"></i></h1>
+                                                                        <dl>
+                                                                        </dl>
+                                                                        <h2>Tags</h2>
+                                                                        <table class="table table-condensed">
+                                                                            <tr><td colspan="2"><em>None found</em></td></tr>
+                                                                        </table>
+                                                                    </aside>
+                                                                </div>
+
+
+                                                                <div class="row-fluid">
+                                                                    <div class="span8 content class">
+                                                                        <a id="method_getLesFraisForfait" name="method_getLesFraisForfait" class="anchor"></a>
+                                                                        <article class="method">
+                                                                            <h3 class="public ">getLesFraisForfait()</h3>
+                                                                            <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                                                                            <pre class="signature" style="margin-right: 54px;">getLesFraisForfait(string  <span class="argument">$idVisiteur</span>, string  <span class="argument">$mois</span>) : array</pre>
+                                                                            <p><em>Fonction qui retourne sous forme d&#039;un tableau associatif toutes
+                                                                                les lignes de frais au forfait concernées par les deux arguments.</em></p>
+
+
+                                                                                <h4>Paramètres</h4>
+                                                                                <table class="table table-condensed table-hover">
+                                                                                    <tr>
+                                                                                        <td>string</td>
+                                                                                        <td>$idVisiteur </td>
+                                                                                        <td><p>: est l'id du visiteur.</p></td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td>string</td>
+                                                                                        <td>$mois </td>
+                                                                                        <td><p>: est le mois sous la forme aaaamm.</p></td>
+                                                                                    </tr>
+                                                                                </table>
+
+
+                                 <h4>Returns</h4>
+                                 <table class="table table-condensed table-hover">
+                                        <tr>
+                                            <td>array</td>
+                                            <td>$lesLignes</td>
+                                            <td><p>: est l'id, le libelle et la quantité sous la forme d'un tableau associatif.</p></td>
+                                        </tr>
+                                    </table>
+                                                                       
+
+                                                                            </article>
+                                                                        </div>
+                                                                        <aside class="span4 detailsbar">
+                                                                            <h1><i class="icon-arrow-down"></i></h1>
+                                                                            <dl>
+                                                                            </dl>
+                                                                            <h2>Tags</h2>
+                                                                            <table class="table table-condensed">
+                                                                                <tr><td colspan="2"><em>None found</em></td></tr>
+                                                                            </table>
+                                                                        </aside>
+                                                                    </div>
+                                                                    <div class="row-fluid">
+                                                                        <div class="span8 content class">
+                                                                            <a id="method_getLesIdFrais" name="method_getLesIdFrais" class="anchor"></a>
+                                                                            <article class="method">
+                                                                                <h3 class="public ">getLesIdFrais()</h3>
+                                                                                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                                                                                <pre class="signature" style="margin-right: 54px;">getLesIdFrais() : array</pre>
+                                                                                <p><em>Fonction qui retourne tous les id de la table FraisForfait.</em></p>
+
+
+
+
+                                  <h4>Returns</h4>
+                                  <table class="table table-condensed table-hover">
+                                        <tr>
+                                            <td>array</td>
+                                            <td>$lesLignes</td>
+                                            <td><p>: est un tableau associatif.</p></td>
+                                        </tr>
+                                    </table>
+                                                                               
+
+                                                                            </article>
+                                                                        </div>
+                                                                        <aside class="span4 detailsbar">
+                                                                            <h1><i class="icon-arrow-down"></i></h1>
+                                                                            <dl>
+                                                                            </dl>
+                                                                            <h2>Tags</h2>
+                                                                            <table class="table table-condensed">
+                                                                                <tr><td colspan="2"><em>None found</em></td></tr>
+                                                                            </table>
+                                                                        </aside>
+                                                                    </div>
+
+                                                                    <div class="row-fluid">
+                                                                        <div class="span8 content class">
+                                                                            <a id="method_getMoisFicheHF" name="method_getMoisFicheHF" class="anchor"></a>
+                                                                            <article class="method">
+                                                                                <h3 class="public ">getMoisFicheHF()</h3>
+                                                                                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                                                                                <pre class="signature" style="margin-right: 54px;">getMoisFicheHF(integer  <span class="argument">$idHF</span>) : string</pre>
+                                                                                <p><em>Fonction qui retourne le mois de la ligne frais hors forfait
+                                                                                    avec l&#039;id passé en paramètre.</em></p>
+
+
+                                                                                    <h4>Paramètres</h4>
+                                                                                    <table class="table table-condensed table-hover">
+                                                                                        <tr>
+                                                                                            <td>integer</td>
+                                                                                            <td>$idHF </td>
+                                                                                            <td><p>: est l'id de la ligne de frais hors forfait.</p></td>
+                                                                                        </tr>
+                                                                                    </table>
+
+
+                                      <h4>Returns</h4>
+                                      <table class="table table-condensed table-hover">
+                                        <tr>
+                                            <td>string</td>
+                                            <td>$mois</td>
+                                            <td><p>: est le mois de la ligne hors forfait (aaaaMM).</p></td>
+                                        </tr>
+                                    </table>
+                                                                                 
+
+                                                                                </article>
+                                                                            </div>
+                                                                            <aside class="span4 detailsbar">
+                                                                                <h1><i class="icon-arrow-down"></i></h1>
+                                                                                <dl>
+                                                                                </dl>
+                                                                                <h2>Tags</h2>
+                                                                                <table class="table table-condensed">
+                                                                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                                                                                </table>
+                                                                            </aside>
+                                                                        </div>
+
+                                                                        <div class="row-fluid">
+                                                                            <div class="span8 content class">
+                                                                                <a id="method_estPremierFraisMois" name="method_estPremierFraisMois" class="anchor"></a>
+                                                                                <article class="method">
+                                                                                    <h3 class="public ">estPremierFraisMois()</h3>
+                                                                                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                                                                                    <pre class="signature" style="margin-right: 54px;">estPremierFraisMois(string  <span class="argument">$idVisiteur</span>, string  <span class="argument">$mois</span>) : boolean</pre>
+                                                                                    <p><em>Fonction qui teste si un visiteur possède une fiche de frais
+                                                                                        pour le mois passé en argument.</em></p>
+
+
+                                                                                        <h4>Paramètres</h4>
+                                                                                        <table class="table table-condensed table-hover">
+                                                                                            <tr>
+                                                                                                <td>string</td>
+                                                                                                <td>$idVisiteur </td>
+                                                                                                <td><p>: est l'id du visiteur.</p></td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <td>string</td>
+                                                                                                <td>$mois </td>
+                                                                                                <td><p>: est le mois sous la forme aaaaMM.</p></td>
+                                                                                            </tr>
+                                                                                        </table>
+
+
+                                       <h4>Returns</h4>
+                                       <table class="table table-condensed table-hover">
+                                        <tr>
+                                            <td>boolean</td>
+                                            <td>$ok</td>
+                                            <td><p>: est un booléen vrai ou faux.</p></td>
+                                        </tr>
+                                    </table>
+                                                                                
+
+                                                                                    </article>
+                                                                                </div>
+                                                                                <aside class="span4 detailsbar">
+                                                                                    <h1><i class="icon-arrow-down"></i></h1>
+                                                                                    <dl>
+                                                                                    </dl>
+                                                                                    <h2>Tags</h2>
+                                                                                    <table class="table table-condensed">
+                                                                                        <tr><td colspan="2"><em>None found</em></td></tr>
+                                                                                    </table>
+                                                                                </aside>
+                                                                            </div>
+
+                                                                            <div class="row-fluid">
+                                                                                <div class="span8 content class">
+                                                                                    <a id="method_estPremierFraisMoisPourCmp" name="method_estPremierFraisMoisPourCmp" class="anchor"></a>
+                                                                                    <article class="method">
+                                                                                        <h3 class="public ">estPremierFraisMoisPourCmp()</h3>
+                                                                                        <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                                                                                        <pre class="signature" style="margin-right: 54px;">estPremierFraisMoisPourCmp(string  <span class="argument">$idVisiteur</span>, string  <span class="argument">$mois</span>) : boolean</pre>
+                                                                                        <p><em>Fonction qui teste si un visiteur possède une fiche de frais
+                                                                                            pour le mois passé en argument. Cette fonction sert au comptable.</em></p>
+
+
+                                                                                            <h4>Paramètres</h4>
+                                                                                            <table class="table table-condensed table-hover">
+                                                                                                <tr>
+                                                                                                    <td>string</td>
+                                                                                                    <td>$idVisiteur </td>
+                                                                                                    <td><p>: est l'id du visiteur.</p></td>
+                                                                                                </tr>
+                                                                                                <tr>
+                                                                                                    <td>string</td>
+                                                                                                    <td>$mois </td>
+                                                                                                    <td><p>: est le mois sous la forme aaaaMM.</p></td>
+                                                                                                </tr>
+                                                                                            </table>
+
+
+                                    <h4>Returns</h4>
+                                    <table class="table table-condensed table-hover">
+                                        <tr>
+                                            <td>boolean</td>
+                                            <td>$ok</td>
+                                            <td><p>: est un booléen vrai ou faux.</p></td>
+                                        </tr>
+                                    </table>
+                                                                                 
+
+                                                                                        </article>
+                                                                                    </div>
+                                                                                    <aside class="span4 detailsbar">
+                                                                                        <h1><i class="icon-arrow-down"></i></h1>
+                                                                                        <dl>
+                                                                                        </dl>
+                                                                                        <h2>Tags</h2>
+                                                                                        <table class="table table-condensed">
+                                                                                            <tr><td colspan="2"><em>None found</em></td></tr>
+                                                                                        </table>
+                                                                                    </aside>
+                                                                                </div>
+
+                                                                                <div class="row-fluid">
+                                                                                    <div class="span8 content class">
+                                                                                        <a id="method_dernierMoisSaisi" name="method_dernierMoisSaisi" class="anchor"></a>
+                                                                                        <article class="method">
+                                                                                            <h3 class="public ">dernierMoisSaisi()</h3>
+                                                                                            <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                                                                                            <pre class="signature" style="margin-right: 54px;">dernierMoisSaisi(string  <span class="argument">$idVisiteur</span>) : string</pre>
+                                                                                            <p><em>Fonction qui retourne le dernier mois en cours d&#039;un visiteur.</em></p>
+
+
+                                                                                            <h4>Paramètres</h4>
+                                                                                            <table class="table table-condensed table-hover">
+                                                                                                <tr>
+                                                                                                    <td>string</td>
+                                                                                                    <td>$idVisiteur </td>
+                                                                                                    <td><p>: est l'id du visiteur.</p></td>
+                                                                                                </tr>
+                                                                                            </table>
+
+
+                                   <h4>Returns</h4>
+                                   <table class="table table-condensed table-hover">
+                                        <tr>
+                                            <td>string</td>
+                                            <td>$dernierMois</td>
+                                            <td><p>: est le dernier mois en cours aaaaMM.</p></td>
+                                        </tr>
+                                    </table>
+                                                                                        
+
+                                                                                        </article>
+                                                                                    </div>
+                                                                                    <aside class="span4 detailsbar">
+                                                                                        <h1><i class="icon-arrow-down"></i></h1>
+                                                                                        <dl>
+                                                                                        </dl>
+                                                                                        <h2>Tags</h2>
+                                                                                        <table class="table table-condensed">
+                                                                                            <tr><td colspan="2"><em>None found</em></td></tr>
+                                                                                        </table>
+                                                                                    </aside>
+                                                                                </div>
+
+
+                                                                                <div class="row-fluid">
+                                                                                    <div class="span8 content class">
+                                                                                        <a id="method_getLesMoisDisponibles" name="method_getLesMoisDisponibles" class="anchor"></a>
+                                                                                        <article class="method">
+                                                                                            <h3 class="public ">getLesMoisDisponibles()</h3>
+                                                                                            <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                                                                                            <pre class="signature" style="margin-right: 54px;">getLesMoisDisponibles(string  <span class="argument">$idVisiteur</span>) : array</pre>
+                                                                                            <p><em>Fonction qui retourne les mois pour lesquels un visiteur
+                                                                                                a une fiche de frais.</em></p>
+
+
+                                                                                                <h4>Paramètres</h4>
+                                                                                                <table class="table table-condensed table-hover">
+                                                                                                    <tr>
+                                                                                                        <td>string</td>
+                                                                                                        <td>$idVisiteur </td>
+                                                                                                        <td><p>: est l'id du visiteur.</p></td>
+                                                                                                    </tr>
+                                                                                                </table>
+
+
+                                                    <h4>Returns</h4>
+                                    <table class="table table-condensed table-hover">
+                                        <tr>
+                                            <td>array</td>
+                                            <td>$lesMois</td>
+                                            <td><p>: est un tableau associatif de clé un mois -aaaamm- et de valeurs l'année et le mois correspondant.</p></td>
+                                        </tr>
+                                    </table>
+                                                                                        
+
+                                                                                            </article>
+                                                                                        </div>
+                                                                                        <aside class="span4 detailsbar">
+                                                                                            <h1><i class="icon-arrow-down"></i></h1>
+                                                                                            <dl>
+                                                                                            </dl>
+                                                                                            <h2>Tags</h2>
+                                                                                            <table class="table table-condensed">
+                                                                                                <tr><td colspan="2"><em>None found</em></td></tr>
+                                                                                            </table>
+                                                                                        </aside>
+                                                                                    </div>
+
+                                                                                    <div class="row-fluid">
+                                                                                        <div class="span8 content class">
+                                                                                            <a id="method_getLesInfosFicheFrais" name="method_getLesInfosFicheFrais" class="anchor"></a>
+                                                                                            <article class="method">
+                                                                                                <h3 class="public ">getLesInfosFicheFrais()</h3>
+                                                                                                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                                                                                                <pre class="signature" style="margin-right: 54px;">getLesInfosFicheFrais(  <span class="argument">$idVisiteur</span>, string  <span class="argument">$mois</span>) : array</pre>
+                                                                                                <p><em>Fonction qui retourne les informations d&#039;une fiche de frais
+                                                                                                    d&#039;un visiteur pour un mois donné.</em></p>
+
+
+                                                                                                    <h4>Paramètres</h4>
+                                                                                                    <table class="table table-condensed table-hover">
+                                                                                                        <tr>
+                                                                                                            <td></td>
+                                                                                                            <td>$idVisiteur </td>
+                                                                                                            <td></td>
+                                                                                                        </tr>
+                                                                                                        <tr>
+                                                                                                            <td>string</td>
+                                                                                                            <td>$mois </td>
+                                                                                                            <td><p>: est le mois sous la forme aaaaMM.</p></td>
+                                                                                                        </tr>
+                                                                                                    </table>
+
+
+                                                <h4>Returns</h4>
+                                    <table class="table table-condensed table-hover">
+                                        <tr>
+                                            <td>array</td>
+                                            <td>$laLigne</td>
+                                            <td><p>: est un tableau avec des champs de jointure entre une fiche de frais et la ligne d'état.</p></td>
+                                        </tr>
+                                    </table>
+                                                                                                 
+
+                                                                                                </article>
+                                                                                            </div>
+                                                                                            <aside class="span4 detailsbar">
+                                                                                                <h1><i class="icon-arrow-down"></i></h1>
+                                                                                                <dl>
+                                                                                                </dl>
+                                                                                                <h2>Tags</h2>
+                                                                                                <table class="table table-condensed">
+                                                                                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                                                                                                </table>
+                                                                                            </aside>
+                                                                                        </div>
+
+                                                                                        <div class="row-fluid">
+                                                                                            <div class="span8 content class">
+                                                                                                <a id="method_getCharteCouleur" name="method_getCharteCouleur" class="anchor"></a>
+                                                                                                <article class="method">
+                                                                                                    <h3 class="public ">getCharteCouleur()</h3>
+                                                                                                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                                                                                                    <pre class="signature" style="margin-right: 54px;">getCharteCouleur(integer  <span class="argument">$idCouleur</span>) : array</pre>
+                                                                                                    <p><em>Fonction qui récupère les couleurs pour chaque éléments par rapport aux
+                                                                                                        préférences de l&#039;utilisateur.</em></p>
+
+
+                                                                                                        <h4>Paramètres</h4>
+                                                                                                        <table class="table table-condensed table-hover">
+                                                                                                            <tr>
+                                                                                                                <td>integer</td>
+                                                                                                                <td>$idCouleur </td>
+                                                                                                                <td><p>: est l'id de la couleur.</p></td>
+                                                                                                            </tr>
+                                                                                                        </table>
+
+
+                                                        <h4>Returns</h4>
+                                    <table class="table table-condensed table-hover">
+                                        <tr>
+                                            <td>array</td>
+                                            <td>$listCouleur</td>
+                                            <td><p>: est la liste des paramètres couleurs.</p></td>
+                                        </tr>
+                                    </table>
+
+                                                                                                    </article>
+                                                                                                </div>
+                                                                                                <aside class="span4 detailsbar">
+                                                                                                    <h1><i class="icon-arrow-down"></i></h1>
+                                                                                                    <dl>
+                                                                                                    </dl>
+                                                                                                    <h2>Tags</h2>
+                                                                                                    <table class="table table-condensed">
+                                                                                                        <tr><td colspan="2"><em>None found</em></td></tr>
+                                                                                                    </table>
+                                                                                                </aside>
+                                                                                            </div>
+
+                                                                                            <div class="row-fluid">
+                                                                                                <div class="span8 content class">
+                                                                                                    <a id="method_getTarifForfait" name="method_getTarifForfait" class="anchor"></a>
+                                                                                                    <article class="method">
+                                                                                                        <h3 class="public ">getTarifForfait()</h3>
+                                                                                                        <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                                                                                                        <pre class="signature" style="margin-right: 54px;">getTarifForfait() : array</pre>
+                                                                                                        <p><em>Fonction qui renvoie les tarifs forfaitaires.</em></p>
+
+
+
+
+                                    <h4>Returns</h4>
+                                    <table class="table table-condensed table-hover">
+                                        <tr>
+                                            <td>array</td>
+                                            <td>$listForfaits</td>
+                                            <td><p>: est la liste des tarifs forfaitaires.</p></td>
+                                        </tr>
+                                    </table>
+
+                            </article>
+                            </div>
+                                                                                                <aside class="span4 detailsbar">
+                                                                                                    <h1><i class="icon-arrow-down"></i></h1>
+                                                                                                    <dl>
+                                                                                                    </dl>
+                                                                                                    <h2>Tags</h2>
+                                                                                                    <table class="table table-condensed">
+                                                                                                        <tr><td colspan="2"><em>None found</em></td></tr>
+                                                                                                    </table>
+                                                                                                </aside>
+                                                                                            </div>
+
+                        <div class="row-fluid">
+                            <div class="span8 content class">
+                                <a id="method_getInfosVisId" name="method_getInfosVisId" class="anchor"></a>
+                                <article class="method">
+                                <h3 class="public ">getInfosVisId()</h3>
+                                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                                <pre class="signature" style="margin-right: 54px;">getInfosVisId($id) : array</pre>
+                                <p><em>Fonction qui retourne les informations d'un visiteur avec son id.</em></p>
+                                
+                                <h4>Paramètres</h4>
+                                    <table class="table table-condensed table-hover">
+                                        <tr>
+                                            <td>string</td>
+                                            <td>$id</td>
+                                            <td><p>: est l'id du visiteur.</p></td>
+                                        </tr>
+                                    </table>
+
+
+
+                                <h4>Returns</h4>
+                                <table class="table table-condensed table-hover">
+                                        <tr>
+                                            <td>array</td>
+                                            <td>$ligne</td>
+                                            <td><p>: est l'id, le nom et le prénom sous la forme d'un tableau associatif.</p></td>
+                                        </tr>
+                                    </table>
+                                
+                                </article>
+                                </div>
+                            <aside class="span4 detailsbar">
+                                <h1><i class="icon-arrow-down"></i></h1>
+                                <dl>
+                                </dl>
+                                <h2>Tags</h2>
+                                <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                                </table>
+                            </aside>
+                        </div>
+
+
+                    </div>
+                </section>
+
+                                                                                    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
+                                                                                        <div class="modal-header">
+                                                                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                                                            <h3 id="source-view-label">class.pdogsb.inc.php</h3>
+                                                                                        </div>
+                                                                                        <div class="modal-body">
+                                                                                            <pre data-src="../files/include.class.pdogsb.inc.php.txt" class="language-php line-numbers"></pre>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                    <footer class="row-fluid">
+                                                                                        <section class="span10 offset2">
+                                                                                            <section class="row-fluid">
+                                                                                                <section class="span10 offset1">
+                                                                                                    <section class="row-fluid footer-sections">
+                                                                                                        <section class="span4">
+                                                                                                            <h1><i class="icon-code"></i></h1>
+                                                                                                            <div>
+                                                                                                                <ul>
+                                                                                                                </ul>
                                                                                                             </div>
+                                                                                                        </section>
+                                                                                                        <section class="span4">
+                                                                                                            <h1><i class="icon-bar-chart"></i></h1>
+                                                                                                            <div>
+                                                                                                                <ul>
+                                                                                                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
+                                                                                                                </ul>
+                                                                                                            </div>
+                                                                                                        </section>
+                                                                                                        <section class="span4">
+                                                                                                            <h1><i class="icon-pushpin"></i></h1>
+                                                                                                            <div>
+                                                                                                                <ul>
+                                                                                                                    <li><a href="../reports/errors.html">Errors</a></li>
+                                                                                                                    <li><a href="../reports/markers.html">Markers</a></li>
+                                                                                                                </ul>
+                                                                                                            </div>
+                                                                                                        </section>
+                                                                                                    </section>
+                                                                                                </section>
+                                                                                            </section>
+                                                                                            <section class="row-fluid">
+                                                                                                <section class="span10 offset1">
+                                                                                                    <hr />
+                                                                                                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                                                                                                    on February 15th, 2015 at 19:03.
+                                                                                                </section>
+                                                                                            </section>
+                                                                                        </section>
+                                                                                    </footer>
+                                                                                </div>
 
-                                                                                                            <footer class="row-fluid">
-                                                                                                                <section class="span10 offset2">
-                                                                                                                    <section class="row-fluid">
-                                                                                                                        <section class="span10 offset1">
-                                                                                                                            <section class="row-fluid footer-sections">
-                                                                                                                                <section class="span4">
-                                                                                                                                    <h1><i class="icon-code"></i></h1>
-                                                                                                                                    <div>
-                                                                                                                                        <ul>
-                                                                                                                                        </ul>
-                                                                                                                                    </div>
-                                                                                                                                </section>
-                                                                                                                                <section class="span4">
-                                                                                                                                    <h1><i class="icon-bar-chart"></i></h1>
-                                                                                                                                    <div>
-                                                                                                                                        <ul>
-                                                                                                                                            <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
-                                                                                                                                        </ul>
-                                                                                                                                    </div>
-                                                                                                                                </section>
-                                                                                                                                <section class="span4">
-                                                                                                                                    <h1><i class="icon-pushpin"></i></h1>
-                                                                                                                                    <div>
-                                                                                                                                        <ul>
-                                                                                                                                            <li><a href="../reports/errors.html">Errors</a></li>
-                                                                                                                                            <li><a href="../reports/markers.html">Markers</a></li>
-                                                                                                                                        </ul>
-                                                                                                                                    </div>
-                                                                                                                                </section>
-                                                                                                                            </section>
-                                                                                                                        </section>
-                                                                                                                    </section>
-                                                                                                                    <section class="row-fluid">
-                                                                                                                        <section class="span10 offset1">
-                                                                                                                            <hr />
-                                                                                                                            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
-                                                                                                                            on February 15th, 2015 at 19:03.
-                                                                                                                        </section>
-                                                                                                                    </section>
-                                                                                                                </section>
-                                                                                                            </footer>
-                                                                                                        </div>
-
-                                                                                                    </body>
-                                                                                                    </html>
+                                                                            </body>
+                                                                            </html>
