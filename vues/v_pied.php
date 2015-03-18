@@ -5,19 +5,19 @@
             <div class="bottom">
                 <div class="container">
                     <div class="col-md-4">
-                        <h5><input type="submit" id="btnAdm" value="Contactez un administrateur"/></h5>
+                        <h5><input type="submit" id="btnAdm" onClick="message()" value="Contactez un administrateur"/></h5>
                     </div>
                     <div class="col-md-4">
-                        <h5><input type="submit" id="btnSiege" value="Contactez le siège social"/></h5>
+                        <h5><input type="submit" id="btnSiege" onClick="message()" value="Contactez le siège social"/></h5>
                     </div>
                     <div class="col-md-4">
-                        <h5><input type="submit" id="btnAProp" value="&Agrave; propos de l'application GSB"/></h5>
+                        <h5><input type="submit" id="btnAProp" onClick="message()" value="&Agrave; propos de l'application GSB"/></h5>
                     </div>
                 </div><!-- fin container -->
                 <div id="divSign">
                     <p>
                         Copyright &copy; 2015
-                        <a href="http://78.211.236.65/portfolio/">Jérémy Cavron</a>
+                        <a href="http://www.dbs.bzh/portfolio/">Jérémy Cavron</a>
                     </p>
                 </div>
             </div><!-- fin bottom -->
@@ -28,7 +28,9 @@
         <!-- script references -->
         <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script> -->
         
-        
+        <script>function message(){
+            alert("option factice");
+        }</script>
         
     </body>
 </html>
