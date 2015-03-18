@@ -4,13 +4,12 @@
 */
 
 /** 
- * Styles CSS est le calque de styles principal de l'application GSB.
+ * Styles CSS est le calque de styles principal de l'application GSB
  *
  * @copyright 2014-2015 CAVRON Jérémy
- * @package styles
+ * @package Styles
  * @author Cavron Jérémy
  * @version 1.0
- * @todo Faire le changement de charte des couleurs.
  */
    header('content-type: text/css');
    ob_start('ob_gzhandler');
@@ -71,6 +70,7 @@ html, body, .page-container, #sidebar {
 #idBtnOption {
     right: 200px;
 }
+
 #idBtnOptionC {
     right:403px;
 }
@@ -372,14 +372,18 @@ margin-right: 60px;
     .listeVisit {
         margin-left:25%;
     }
+
   
-    #idBtnFicheF, #idBtnOption, #idBtnDeconnexion,
+    #idBtnFicheF, #idBtnOptionC, #idBtnOption, #idBtnDeconnexion,
     #idBtnSaisieF {
         right: 0px;
         width: 210px;
     }
     #idBtnSaisieF {
         top: 58px;
+    }
+    #idBtnOptionC {
+        top: 115px;
     }
     #idBtnFicheF {
         top: 115px;
@@ -483,7 +487,7 @@ margin-right: 60px;
     .listeVisit {
         margin-left:20%;
     }
-    #idBtnSaisieF, #idBtnFicheF, #idBtnOption,
+    #idBtnSaisieF, #idBtnFicheF, #idBtnOptionC, #idBtnOption,
     #idBtnDeconnexion {
         visibility: hidden;
     }

@@ -31,15 +31,15 @@ class PdoGsb {
     /**
      * @var string $bdd : est le nom de la base de données.
      */
-    private static $bdd = 'dbname=GSBdata';
+    private static $bdd = 'dbname=NomBDD';
     /**
      * @var string $user : est le login général pour accéder à la base de données.
      */
-    private static $user = 'admgsb';
+    private static $user = 'login';
     /**
      * @var string $mdp : est le mot de passe général pour accéder à la base de données.
      */
-    private static $mdp = 'admgsb01';
+    private static $mdp = 'motDePasse';
     /**
      * @var object $monPdo : est le curseur pdo.
      */
@@ -97,6 +97,37 @@ class PdoGsb {
     }
 
     /**
+     * Fonction qui retourne les informations d'un visiteur.
+     * 
+     * @param string $id : est l'id du visiteur.
+     * @return array $ligne : est l'id, le nom et le prénom sous la forme d'un tableau associatif.
+     */
+    public function getInfosVisId($id) {
+ 
+        $req = "SELECT * "
+                ."FROM visiteur "
+                ."WHERE id = '".$id."'";
+        $rs = PdoGsb::$monPdo->query($req);
+        
+        $rs->execute();
+        $ligne = $rs->fetch();
+
+        return $ligne;
+    }
+
+    /**
+     * Procédure qui modifie le mot de passe du visiteur.
+     * 
+     * @param string $idVisiteur : est l'id du visiteur.
+     * @param string $nouvMdp : est le nouveau mot de passe.
+     */
+    public function setMdpVisiteur($idVisiteur, $nouvMdp) {
+         $req = "UPDATE visiteur SET visiteur.mdp = '$nouvMdp' "
+                 ."WHERE visiteur.id = '$idVisiteur'";
+            PdoGsb::$monPdo->exec($req);
+    }
+
+    /**
      * Fonction qui récupère tous les id, nom et prénom des visiteurs (commerciaux)
      * et les retourne.
      * 
@@ -115,6 +146,8 @@ class PdoGsb {
         //json_encode($tousVis);
         return $tousVis;
     }
+
+    
 
     /**
      * Fonction qui retourne sous forme d'un tableau associatif toutes 
@@ -181,7 +214,7 @@ class PdoGsb {
      * @return array $lesLignes : est un tableau associatif.
      */
     public function getLesIdFrais() {
-        $req = "select fraisforfait.id as idfrais from fraisforfait order by fraisforfait.id";
+        $req = "select fraisforfait.id AS idfrais FROM fraisforfait ORDER BY fraisforfait.id";
         $res = PdoGsb::$monPdo->query($req);
         $lesLignes = $res->fetchAll();
         return $lesLignes;
@@ -362,6 +395,19 @@ class PdoGsb {
      */
     public function supprimerFraisHorsForfait($idFrais) {
         $req = "DELETE FROM lignefraishorsforfait WHERE id = $idFrais ";
+        PdoGsb::$monPdo->exec($req);
+    }
+
+    /**
+     * Procédure de suppression de tous les frais hors forfait d'un mois
+     * passé en paramètre et de l'id du visiteur
+     * 
+     * @param $idVisiteur : est l'id du visiteur.
+     * @param $mois : est le mois sous la forme aaaaMM.
+     */
+    public function supprimeToutFraisHf($idVisiteur, $mois) {
+        $req = "DELETE FROM lignefraishorsforfait WHERE idVisiteur = '".$idVisiteur
+                ."' AND mois = '".$mois."'";
         PdoGsb::$monPdo->exec($req);
     }
 

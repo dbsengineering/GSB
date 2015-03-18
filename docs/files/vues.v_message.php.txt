@@ -1,4 +1,4 @@
-<div class ="alert-danger">
+<div class ="alert-success">
 <ul>
 <?php 
     foreach($_REQUEST['erreurs'] as $erreur) {
@@ -6,4 +6,3 @@
     }
 ?>
 </ul></div>
-
