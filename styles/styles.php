@@ -70,6 +70,7 @@ html, body, .page-container, #sidebar {
 #idBtnOption {
     right: 200px;
 }
+
 #idBtnOptionC {
     right:403px;
 }
@@ -371,14 +372,18 @@ margin-right: 60px;
     .listeVisit {
         margin-left:25%;
     }
+
   
-    #idBtnFicheF, #idBtnOption, #idBtnDeconnexion,
+    #idBtnFicheF, #idBtnOptionC, #idBtnOption, #idBtnDeconnexion,
     #idBtnSaisieF {
         right: 0px;
         width: 210px;
     }
     #idBtnSaisieF {
         top: 58px;
+    }
+    #idBtnOptionC {
+        top: 115px;
     }
     #idBtnFicheF {
         top: 115px;
@@ -482,7 +487,7 @@ margin-right: 60px;
     .listeVisit {
         margin-left:20%;
     }
-    #idBtnSaisieF, #idBtnFicheF, #idBtnOption,
+    #idBtnSaisieF, #idBtnFicheF, #idBtnOptionC, #idBtnOption,
     #idBtnDeconnexion {
         visibility: hidden;
     }
