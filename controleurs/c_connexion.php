@@ -23,7 +23,10 @@ switch ($action) {
     case 'valideConnexion': {
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $login = $_POST['login'];
+                $_SESSION['login'] = $login;
                 $mdp = $_POST['mdp'];
+                
+                $mdp = sha1($login.$mdp);
             }
             $visiteur = $pdo->getInfosVisiteur($login, $mdp);
             if (!is_array($visiteur)) {
