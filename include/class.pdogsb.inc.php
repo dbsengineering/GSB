@@ -31,15 +31,15 @@ class PdoGsb {
     /**
      * @var string $bdd : est le nom de la base de données.
      */
-    private static $bdd = 'dbname=baseDeDonnées';
+    private static $bdd = 'dbname=baseDeDonnees';
     /**
      * @var string $user : est le login général pour accéder à la base de données.
      */
-    private static $user = 'login';
+    private static $user = 'nomBDD';
     /**
      * @var string $mdp : est le mot de passe général pour accéder à la base de données.
      */
-    private static $mdp = 'motdepasse';
+    private static $mdp = 'MotDePasseBdd';
     /**
      * @var object $monPdo : est le curseur pdo.
      */
@@ -96,6 +96,37 @@ class PdoGsb {
 
         return $ligne;
     }
+    
+    /**
+     * Fonction qui retourne les informations d'un visiteur avec son id.
+     * 
+     * @param string $id : est l'id du visiteur.
+     * @return array $ligne : est l'id, le nom et le prénom sous la forme d'un tableau associatif.
+     */
+    public function getInfosVisId($id) {
+ 
+        $req = "SELECT * "
+                ."FROM visiteur "
+                ."WHERE id = '".$id."'";
+        $rs = PdoGsb::$monPdo->query($req);
+        
+        $rs->execute();
+        $ligne = $rs->fetch();
+
+        return $ligne;
+    }
+    
+    /**
+     * Procédure qui modifie le mot de passe du visiteur.
+     * 
+     * @param string $idVisiteur : est l'id du visiteur.
+     * @param string $nouvMdp : est le nouveau mot de passe.
+     */
+    public function setMdpVisiteur($idVisiteur, $nouvMdp) {
+         $req = "UPDATE visiteur SET visiteur.mdp = '$nouvMdp' "
+                 ."WHERE visiteur.id = '$idVisiteur'";
+            PdoGsb::$monPdo->exec($req);
+    }
 
     /**
      * Fonction qui récupère tous les id, nom et prénom des visiteurs (commerciaux)
@@ -112,8 +143,6 @@ class PdoGsb {
         $rs->execute();
         $tousVis = $rs->fetchAll();
 
-
-        //json_encode($tousVis);
         return $tousVis;
     }
 
